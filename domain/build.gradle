@@ -1,0 +1,13 @@
+apply plugin: 'kotlin'
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation "javax.annotation:jsr250-api:$javaxAnnotationVersion"
+    implementation "javax.inject:javax.inject:$javaxInjectionVersion"
+    implementation "io.reactivex.rxjava2:rxkotlin:$rxJavaVersion"
+
+    implementation "junit:junit:$jUnitVersion"
+    implementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockitoKotlinVersion"
+    implementation "org.assertj:assertj-core:$assertJVersion"
+}

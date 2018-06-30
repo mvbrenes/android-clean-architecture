@@ -1,0 +1,17 @@
+ext {
+    // Android
+    androidMinSdkVersion = 21
+    androidTargetSdkVersion = 28
+    androidCompileSdkVersion = 28
+
+    // Libraries
+    axAppCompatVersion = '1.0.0-alpha1'
+    rxJavaVersion = "2.0.2"
+    javaxAnnotationVersion = "1.0"
+    javaxInjectionVersion = "1"
+
+    // Testing
+    jUnitVersion = '4.12'
+    assertJVersion = '3.8.0'
+    mockitoKotlinVersion = '2.0.0-RC1'
+}
