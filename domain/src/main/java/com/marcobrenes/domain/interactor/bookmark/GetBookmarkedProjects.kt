@@ -1,4 +1,4 @@
-package com.marcobrenes.domain.interactor.browse
+package com.marcobrenes.domain.interactor.bookmark
 
 import com.marcobrenes.domain.executor.PostExecutionThread
 import com.marcobrenes.domain.interactor.ObservableUseCase
