@@ -1,4 +1,4 @@
-package com.marcobrenes.domain.interactor
+package com.marcobrenes.domain.interactor.browse
 
 import com.marcobrenes.domain.executor.PostExecutionThread
 import com.marcobrenes.domain.interactor.browse.GetProjects
