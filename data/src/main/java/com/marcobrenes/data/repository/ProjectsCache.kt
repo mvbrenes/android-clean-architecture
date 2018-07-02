@@ -15,7 +15,7 @@ interface ProjectsCache {
 
     fun getBookmarkedProjects(): Observable<List<ProjectEntity>>
 
-    fun setProjectsAsBookmarked(projectId: String): Completable
+    fun setProjectAsBookmarked(projectId: String): Completable
 
     fun setProjectAsNotBookmarked(projectId: String): Completable
 
@@ -23,5 +23,5 @@ interface ProjectsCache {
 
     fun setLastCacheTime(lastCache: Long): Completable
 
-    fun isProjectCacheExpired(): Single<Boolean>
+    fun isProjectsCacheExpired(): Single<Boolean>
 }

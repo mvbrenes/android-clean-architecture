@@ -37,7 +37,6 @@ class UnbookmarkProjectTest {
     }
 
     private fun stubUnbookmarkProject(completable: Completable) {
-        whenever(projectsRepository.unbookmarkProject(any()))
-                .doReturn(completable)
+        whenever(projectsRepository.unbookmarkProject(any())) doReturn completable
     }
 }

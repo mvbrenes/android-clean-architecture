@@ -23,6 +23,6 @@ class ProjectsDataStoreFactoryTest {
     }
 
     @Test fun getCacheDataStoreReturnsCacheStore() {
-        assertEquals(cacheStore, factory.getCachedDataStore())
+        assertEquals(cacheStore, factory.getCacheDataStore())
     }
 }

@@ -18,7 +18,7 @@ class ProjectsDataRepository @Inject constructor(
 
     override fun getProjects(): Observable<List<Project>> {
         return Observable.zip(cache.areProjectsCached().toObservable(),
-                cache.isProjectCacheExpired().toObservable(),
+                cache.isProjectsCacheExpired().toObservable(),
                 BiFunction<Boolean, Boolean, Pair<Boolean, Boolean>> { areCached, isExpired ->
                     Pair(areCached, isExpired)
                 })
@@ -26,7 +26,7 @@ class ProjectsDataRepository @Inject constructor(
                     factory.getDataStore(it.first, it.second).getProjects()
                 }
                 .flatMap { projects ->
-                    factory.getCachedDataStore()
+                    factory.getCacheDataStore()
                             .saveProjects(projects)
                             .andThen(Observable.just(projects))
                 }
@@ -38,15 +38,15 @@ class ProjectsDataRepository @Inject constructor(
     }
 
     override fun bookmarkProject(projectId: String): Completable {
-        return factory.getCachedDataStore().setProjectAsBookmarked(projectId)
+        return factory.getCacheDataStore().setProjectAsBookmarked(projectId)
     }
 
     override fun unbookmarkProject(projectId: String): Completable {
-        return factory.getCachedDataStore().setProjectAsNotBookmarked(projectId)
+        return factory.getCacheDataStore().setProjectAsNotBookmarked(projectId)
     }
 
     override fun getBookmarkedProjects(): Observable<List<Project>> {
-        return factory.getCachedDataStore().getBookmarkedProjects()
+        return factory.getCacheDataStore().getBookmarkedProjects()
                 .map {
                     it.map { mapper.mapFromEntity(it) }
                 }

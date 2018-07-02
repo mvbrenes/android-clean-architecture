@@ -16,7 +16,7 @@ open class ProjectsDataStoreFactory @Inject constructor(
         }
     }
 
-    open fun getCachedDataStore(): ProjectsDataStore {
+    open fun getCacheDataStore(): ProjectsDataStore {
         return projectsCacheDataStore
     }
 }
