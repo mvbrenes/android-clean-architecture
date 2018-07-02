@@ -17,21 +17,18 @@ class GetBookmarkedProjectsTest {
     @Mock lateinit var projectsRepository: ProjectsRepository
     @Mock lateinit var postExecutionThread: PostExecutionThread
 
-    @Before
-    fun setup() {
+    @Before fun setup() {
         MockitoAnnotations.initMocks(this)
         getBookmarkProjects = GetBookmarkedProjects(projectsRepository, postExecutionThread)
     }
 
-    @Test
-    fun getBookmarkedProjectsComplete() {
+    @Test fun getBookmarkedProjectsComplete() {
         stubGetProjects(Observable.just(ProjectDataFactory.makeProjectList(2)))
         val testObserver = getBookmarkProjects.buildUseCaseObservable().test()
         testObserver.assertComplete()
     }
 
-    @Test
-    fun getBookmarkedProjectsReturnsData() {
+    @Test fun getBookmarkedProjectsReturnsData() {
         val projects = ProjectDataFactory.makeProjectList(2)
         stubGetProjects(Observable.just(projects))
         val testObserver = getBookmarkProjects.buildUseCaseObservable().test()

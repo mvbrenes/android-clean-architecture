@@ -12,31 +12,32 @@ import org.junit.Test
 import org.mockito.Mock
 import org.mockito.MockitoAnnotations
 
-class BookmarkProjectTest {
+class UnbookmarkProjectTest {
 
-    private lateinit var bookmarkProject: BookmarkProject
+    private lateinit var unbookmarkProject: UnbookmarkProject
     @Mock lateinit var projectsRepository: ProjectsRepository
     @Mock lateinit var postExecutionThread: PostExecutionThread
 
     @Before fun setup() {
         MockitoAnnotations.initMocks(this)
-        bookmarkProject = BookmarkProject(projectsRepository, postExecutionThread)
+        unbookmarkProject = UnbookmarkProject(projectsRepository, postExecutionThread)
     }
 
-    @Test fun bookmarkProjectCompletes() {
-        stubBookmarkProject(Completable.complete())
-        val testObserver = bookmarkProject.buildUseCaseCompletable(
-                BookmarkProject.Params.forProject(ProjectDataFactory.randomUuid())).test()
+    @Test fun unbookmarkProjectCompletes() {
+        stubUnbookmarkProject(Completable.complete())
+        val testObserver = unbookmarkProject.buildUseCaseCompletable(
+                UnbookmarkProject.Params.forProject(ProjectDataFactory.randomUuid()))
+                .test()
         testObserver.assertComplete()
     }
 
     @Test(expected = IllegalArgumentException::class)
-    fun bookmarkProjectThrowsException() {
-        bookmarkProject.buildUseCaseCompletable().test()
+    fun unbookmarkProjectsThrowsException() {
+        unbookmarkProject.buildUseCaseCompletable().test()
     }
 
-    private fun stubBookmarkProject(completable: Completable) {
-        whenever(projectsRepository.bookmarkProject(any()))
+    private fun stubUnbookmarkProject(completable: Completable) {
+        whenever(projectsRepository.unbookmarkProject(any()))
                 .doReturn(completable)
     }
 }
