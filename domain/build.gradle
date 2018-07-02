@@ -3,6 +3,7 @@ apply plugin: 'kotlin'
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
+    implementation domainDependencies.kotlin
     implementation domainDependencies.javaxAnnotations
     implementation domainDependencies.javaxInject
     implementation domainDependencies.rxJava

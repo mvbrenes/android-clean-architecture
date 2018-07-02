@@ -9,7 +9,7 @@ open class ProjectsDataStoreFactory @Inject constructor(
 ) {
     open fun getDataStore(projectsCached: Boolean,
                           cacheExpired: Boolean): ProjectsDataStore {
-        return if (projectsCached and cacheExpired.not()) {
+        return if (projectsCached && !cacheExpired) {
             projectsCacheDataStore
         } else {
             projectsRemoteDataSource

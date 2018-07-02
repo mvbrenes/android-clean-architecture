@@ -19,6 +19,7 @@ ext {
     robolectricVersion = '4.0-alpha-2'
 
     domainDependencies = [
+            kotlin          : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion",
             javaxAnnotations: "javax.annotation:jsr250-api:$javaxAnnotationVersion",
             javaxInject     : "javax.inject:javax.inject:$javaxInjectionVersion",
             rxJava          : "io.reactivex.rxjava2:rxjava:$rxJavaVersion"

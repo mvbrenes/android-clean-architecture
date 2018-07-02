@@ -1,4 +1,4 @@
-package com.marcobrenes.data
+package com.marcobrenes.data.test.factory
 
 import java.util.*
 import java.util.concurrent.ThreadLocalRandom
