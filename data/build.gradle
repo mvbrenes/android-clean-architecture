@@ -1,0 +1,17 @@
+apply plugin: 'kotlin'
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation project(':domain')
+
+    implementation dataDependencies.javaxAnnotations
+    implementation dataDependencies.kotlin
+    implementation dataDependencies.javaxInject
+    implementation dataDependencies.rxKotlin
+
+    implementation dataTestDependencies.junit
+    implementation dataTestDependencies.kotlinJUnit
+    implementation dataTestDependencies.assertJ
+    implementation dataTestDependencies.mockitoKotlin
+}
