@@ -10,6 +10,7 @@ dependencies {
     implementation remoteDependencies.javaxInject
     implementation remoteDependencies.androidAnnotations
     implementation remoteDependencies.okhttp
+    implementation remoteDependencies.okhttpInterceptor
     implementation remoteDependencies.retrofit
     implementation remoteDependencies.retrofitConverter
     implementation remoteDependencies.retrofitAdapter

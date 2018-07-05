@@ -63,6 +63,7 @@ ext {
             javaxInject       : "javax.inject:javax.inject:$javaxInjectionVersion",
             androidAnnotations: "androidx.annotation:annotation:$axSupportAnnotations",
             okhttp            : "com.squareup.okhttp3:okhttp:$okhttpVersion",
+            okhttpInterceptor : "com.squareup.okhttp3:logging-interceptor:$okhttpVersion",
             retrofit          : "com.squareup.retrofit2:retrofit:$retrofitVersion",
             retrofitConverter : "com.squareup.retrofit2:converter-gson:$retrofitVersion",
             retrofitAdapter   : "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
