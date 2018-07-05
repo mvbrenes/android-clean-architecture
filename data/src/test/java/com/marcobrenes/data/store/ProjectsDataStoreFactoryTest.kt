@@ -7,7 +7,7 @@ import kotlin.test.assertEquals
 class ProjectsDataStoreFactoryTest {
 
     private val cacheStore = mock<ProjectsCacheDataStore>()
-    private val remoteStore = mock<ProjectsRemoteDataSource>()
+    private val remoteStore = mock<ProjectsRemoteDataStore>()
     private val factory = ProjectsDataStoreFactory(cacheStore, remoteStore)
 
     @Test fun getDataStoreReturnsRemoteStoreWhenCacheExpired() {
