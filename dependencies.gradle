@@ -5,7 +5,7 @@ ext {
     androidCompileSdkVersion = 28
 
     // Libraries
-    kotlinVersion = '1.2.50'
+    kotlinVersion = '1.2.51'
     axAppCompatVersion = '1.0.0-alpha1'
     rxJavaVersion = '2.1.16'
     rxKotlinVersion = '2.2.0'
