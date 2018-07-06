@@ -7,14 +7,18 @@ import com.marcobrenes.remote.service.GithubTrendingService
 import io.reactivex.Observable
 import javax.inject.Inject
 
-private const val QUERY = "language:kotlin"
-private const val SORT_BY = "stars"
-private const val ORDER = "desc"
+
 
 class ProjectsRemoteImpl @Inject constructor(
         private val service: GithubTrendingService,
         private val mapper: ProjectsResponseModelMapper
 ) : ProjectsRemote {
+
+    companion object {
+        const val QUERY = "language:kotlin"
+        const val SORT_BY = "stars"
+        const val ORDER = "desc"
+    }
 
     override fun getProjects(): Observable<List<ProjectEntity>> {
         return service.searchRepositories(QUERY, SORT_BY, ORDER)

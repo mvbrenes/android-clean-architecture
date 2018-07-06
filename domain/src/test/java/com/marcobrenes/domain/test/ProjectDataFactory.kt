@@ -3,7 +3,7 @@ package com.marcobrenes.domain.test
 import com.marcobrenes.domain.model.Project
 import java.util.*
 
-object ProjectDataFactory {
+internal object ProjectDataFactory {
 
     fun randomUuid() = UUID.randomUUID().toString()
     fun randomBoolean() = Math.random() < 0.5

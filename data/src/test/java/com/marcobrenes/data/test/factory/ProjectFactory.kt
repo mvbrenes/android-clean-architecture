@@ -3,7 +3,7 @@ package com.marcobrenes.data.test.factory
 import com.marcobrenes.data.model.ProjectEntity
 import com.marcobrenes.domain.model.Project
 
-object ProjectFactory {
+internal object ProjectFactory {
 
     fun makeProjectEntity(): ProjectEntity {
         return with(DataFactory) {
