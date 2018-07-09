@@ -3,7 +3,7 @@ package com.marcobrenes.remote.test.factory
 import com.marcobrenes.data.model.ProjectEntity
 import com.marcobrenes.remote.model.OwnerModel
 import com.marcobrenes.remote.model.ProjectModel
-import com.marcobrenes.remote.model.ProjectsReponseModel
+import com.marcobrenes.remote.model.ProjectsResponseModel
 
 object ProjectDataFactory {
 
@@ -27,7 +27,7 @@ object ProjectDataFactory {
         }
     }
 
-    fun makeProjectsResponse(): ProjectsReponseModel {
-        return ProjectsReponseModel(listOf(makeProject(), makeProject()))
+    fun makeProjectsResponse(): ProjectsResponseModel {
+        return ProjectsResponseModel(listOf(makeProject(), makeProject()))
     }
 }

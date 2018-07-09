@@ -15,8 +15,8 @@ import org.mockito.MockitoAnnotations
 class UnbookmarkProjectTest {
 
     private lateinit var unbookmarkProject: UnbookmarkProject
-    @Mock lateinit var projectsRepository: ProjectsRepository
-    @Mock lateinit var postExecutionThread: PostExecutionThread
+    @Mock private lateinit var projectsRepository: ProjectsRepository
+    @Mock private lateinit var postExecutionThread: PostExecutionThread
 
     @Before fun setup() {
         MockitoAnnotations.initMocks(this)

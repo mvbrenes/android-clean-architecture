@@ -1,7 +1,6 @@
 package com.marcobrenes.domain.interactor.browse
 
 import com.marcobrenes.domain.executor.PostExecutionThread
-import com.marcobrenes.domain.interactor.browse.GetProjects
 import com.marcobrenes.domain.model.Project
 import com.marcobrenes.domain.repository.ProjectsRepository
 import com.marcobrenes.domain.test.ProjectDataFactory

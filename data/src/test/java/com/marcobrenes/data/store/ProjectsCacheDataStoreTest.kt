@@ -73,14 +73,14 @@ class ProjectsCacheDataStoreTest {
     }
 
     @Test fun getBookmarkedProjectsCompletes() {
-        stubProjectsCacheGetBookmakedProjects(Observable.just(listOf(
+        stubProjectsCacheGetBookmarkedProjects(Observable.just(listOf(
                 ProjectFactory.makeProjectEntity())))
         val testObserver = store.getBookmarkedProjects().test()
         testObserver.assertComplete()
     }
 
     @Test fun getBookmarkedProjectsCallsCacheStore() {
-        stubProjectsCacheGetBookmakedProjects(Observable.just(listOf(
+        stubProjectsCacheGetBookmarkedProjects(Observable.just(listOf(
                 ProjectFactory.makeProjectEntity())))
         store.getBookmarkedProjects().test()
         verify(cache).getBookmarkedProjects()
@@ -88,7 +88,7 @@ class ProjectsCacheDataStoreTest {
 
     @Test fun getBookmarkedProjectsReturnsData() {
         val data = listOf(ProjectFactory.makeProjectEntity())
-        stubProjectsCacheGetBookmakedProjects(Observable.just(data))
+        stubProjectsCacheGetBookmarkedProjects(Observable.just(data))
         val testObserver = store.getBookmarkedProjects().test()
         testObserver.assertValue(data)
     }
@@ -135,7 +135,7 @@ class ProjectsCacheDataStoreTest {
         whenever(cache.clearProjects()) doReturn completable
     }
 
-    private fun stubProjectsCacheGetBookmakedProjects(observable: Observable<List<ProjectEntity>>) {
+    private fun stubProjectsCacheGetBookmarkedProjects(observable: Observable<List<ProjectEntity>>) {
         whenever(cache.getBookmarkedProjects()) doReturn observable
     }
 

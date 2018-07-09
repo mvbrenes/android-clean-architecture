@@ -6,7 +6,7 @@ import com.marcobrenes.remote.ProjectsRemoteImpl.Companion.QUERY
 import com.marcobrenes.remote.ProjectsRemoteImpl.Companion.SORT_BY
 import com.marcobrenes.remote.mapper.ProjectsResponseModelMapper
 import com.marcobrenes.remote.model.ProjectModel
-import com.marcobrenes.remote.model.ProjectsReponseModel
+import com.marcobrenes.remote.model.ProjectsResponseModel
 import com.marcobrenes.remote.service.GithubTrendingService
 import com.marcobrenes.remote.test.factory.ProjectDataFactory
 import com.nhaarman.mockitokotlin2.*
@@ -62,7 +62,7 @@ class ProjectsRemoteImpTest {
         verify(service).searchRepositories(QUERY, SORT_BY, ORDER)
     }
 
-    private fun stubGithubTrendingServiceSearchRepositories(observable: Observable<ProjectsReponseModel>) {
+    private fun stubGithubTrendingServiceSearchRepositories(observable: Observable<ProjectsResponseModel>) {
         whenever(service.searchRepositories(any(), any(), any())) doReturn observable
     }
 

@@ -15,7 +15,7 @@ import org.mockito.MockitoAnnotations
 class BookmarkProjectTest {
 
     private lateinit var bookmarkProject: BookmarkProject
-    @Mock lateinit var projectsRepository: ProjectsRepository
+    @Mock private lateinit var projectsRepository: ProjectsRepository
     @Mock lateinit var postExecutionThread: PostExecutionThread
 
     @Before fun setup() {

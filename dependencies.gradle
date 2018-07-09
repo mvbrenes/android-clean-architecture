@@ -6,7 +6,7 @@ ext {
 
     // Libraries
     kotlinVersion = '1.2.51'
-    axAppCompatVersion = '1.0.0-alpha1'
+    axAppCompatVersion = '1.0.0-beta01'
     axSupportAnnotations = '1.0.0-alpha1'
     rxJavaVersion = '2.1.16'
     rxKotlinVersion = '2.2.0'
@@ -17,6 +17,8 @@ ext {
     gsonVersion = '2.8.5'
     okhttpVersion = '3.10.0'
     retrofitVersion = '2.4.0'
+
+    roomVersion = "2.0.0-alpha1"
 
     // Testing
     jUnitVersion = '4.12'
@@ -74,6 +76,32 @@ ext {
             assertJ      : "org.assertj:assertj-core:$assertJVersion",
             kotlinJUnit  : "org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion",
             mockitoKotlin: "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockitoKotlinVersion",
+            testRunner   : "androidx.test:runner:$axTestRunner",
+            testRules    : "androidx.test:rules:$axTestRules"
+    ]
+
+    cacheDependencies = [
+            daggerCompiler    : "com.google.dagger:dagger-compiler:$daggerVersion",
+            dagger            : "com.google.dagger:dagger:$daggerVersion",
+            gson              : "com.google.code.gson:gson:$gsonVersion",
+            rxKotlin          : "io.reactivex.rxjava2:rxkotlin:$rxKotlinVersion",
+            kotlin            : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion",
+            javaxAnnotations  : "javax.annotation:jsr250-api:$javaxAnnotationVersion",
+            javaxInject       : "javax.inject:javax.inject:$javaxInjectionVersion",
+            androidAnnotations: "androidx.annotation:annotation:$axSupportAnnotations",
+            roomRuntime       : "androidx.room:room-runtime:$roomVersion",
+            roomCompiler      : "androidx.room:room-compiler:$roomVersion",
+            roomRxJva         : "androidx.room:room-rxjava2:$roomVersion",
+            appCompat         : "androidx.appcompat:appcompat:$axAppCompatVersion"
+    ]
+
+    cacheTestDependencies = [
+            junit        : "junit:junit:$jUnitVersion",
+            assertJ      : "org.assertj:assertj-core:$assertJVersion",
+            kotlinJUnit  : "org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion",
+            mockitoKotlin: "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockitoKotlinVersion",
+            roomTesting  : "androidx.room:room-testing:$roomVersion",
+            archTesting  : "androidx.arch.core:core-testing:$roomVersion",
             testRunner   : "androidx.test:runner:$axTestRunner",
             testRules    : "androidx.test:rules:$axTestRules"
     ]
