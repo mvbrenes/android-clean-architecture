@@ -7,19 +7,29 @@ internal object ProjectFactory {
 
     fun makeProjectEntity(): ProjectEntity {
         return with(DataFactory) {
-            ProjectEntity(randomString(), randomString(),
-                    randomString(), randomString(),
-                    randomString(), randomString(),
-                    randomString(), randomBoolean())
+            ProjectEntity(
+                    randomString(),
+                    randomString(),
+                    randomString(),
+                    randomString(),
+                    randomString(),
+                    randomString(),
+                    randomString()
+            )
         }
     }
 
     fun makeProject(): Project {
         return with(DataFactory) {
-            Project(randomString(), randomString(),
-                    randomString(), randomString(),
-                    randomString(), randomString(),
-                    randomString(), randomBoolean())
+            Project(
+                    randomString(),
+                    randomString(),
+                    randomString(),
+                    randomString(),
+                    randomString(),
+                    randomString(),
+                    randomString()
+            )
         }
     }
 }

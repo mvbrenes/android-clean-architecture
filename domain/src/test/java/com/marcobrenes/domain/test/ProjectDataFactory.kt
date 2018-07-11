@@ -8,9 +8,15 @@ internal object ProjectDataFactory {
     fun randomUuid() = UUID.randomUUID().toString()
     fun randomBoolean() = Math.random() < 0.5
 
-    fun makeProject() = Project(randomUuid(), randomUuid(), randomUuid(),
-                randomUuid(), randomUuid(), randomUuid(),
-                randomUuid(), randomBoolean())
+    fun makeProject() = Project(
+            randomUuid(),
+            randomUuid(),
+            randomUuid(),
+            randomUuid(),
+            randomUuid(),
+            randomUuid(),
+            randomUuid()
+    )
 
     fun makeProjectList(count: Int): List<Project> {
         val projects = mutableListOf<Project>()

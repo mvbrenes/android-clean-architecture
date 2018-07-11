@@ -41,6 +41,7 @@ dependencies {
     implementation cacheDependencies.roomRuntime
     implementation cacheDependencies.roomRxJva
     implementation cacheDependencies.appCompat
+
     kapt cacheDependencies.daggerCompiler
     kapt cacheDependencies.roomCompiler
 }
