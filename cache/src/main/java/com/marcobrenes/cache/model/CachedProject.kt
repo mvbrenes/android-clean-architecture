@@ -2,10 +2,10 @@ package com.marcobrenes.cache.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.marcobrenes.cache.db.ProjectConstants
+import com.marcobrenes.cache.db.ProjectConstants.TABLE_NAME
 
-@Entity(tableName = ProjectConstants.TABLE_NAME)
-data class CacheProject(
+@Entity(tableName = TABLE_NAME)
+data class CachedProject(
         @PrimaryKey var id: String,
         var name: String,
         var fullName: String,
