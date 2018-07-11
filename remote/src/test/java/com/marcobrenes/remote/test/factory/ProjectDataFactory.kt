@@ -23,7 +23,7 @@ object ProjectDataFactory {
     fun makeProjectEntity(): ProjectEntity {
         return with(DataFactory) {
             ProjectEntity(randomString(), randomString(), randomString(),
-                    randomString(), randomString(), randomString(), randomString())
+                    randomString(), randomString(), randomString(), randomString(), randomBoolean())
         }
     }
 

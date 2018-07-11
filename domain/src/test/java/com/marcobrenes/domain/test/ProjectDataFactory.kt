@@ -15,7 +15,8 @@ internal object ProjectDataFactory {
             randomUuid(),
             randomUuid(),
             randomUuid(),
-            randomUuid()
+            randomUuid(),
+            randomBoolean()
     )
 
     fun makeProjectList(count: Int): List<Project> {

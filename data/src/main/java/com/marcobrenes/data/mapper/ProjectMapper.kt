@@ -9,14 +9,14 @@ class ProjectMapper @Inject constructor(): EntityMapper<ProjectEntity, Project> 
     override fun mapFromEntity(entity: ProjectEntity): Project {
         return with(entity) {
             Project(id, name, fullName, starCount, dateCreated,
-                    ownerName, ownerAvatar)
+                    ownerName, ownerAvatar, isBookmarked)
         }
     }
 
     override fun mapToEntity(domain: Project): ProjectEntity {
         return with(domain) {
             ProjectEntity(id, name, fullName, starCount, dateCreated,
-                    ownerName, ownerAvatar)
+                    ownerName, ownerAvatar, isBookmarked)
         }
     }
 }

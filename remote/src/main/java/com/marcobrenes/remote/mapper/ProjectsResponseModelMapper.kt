@@ -8,7 +8,7 @@ class ProjectsResponseModelMapper : ModelMapper<ProjectModel, ProjectEntity> {
     override fun mapFromModel(model: ProjectModel): ProjectEntity {
         return with(model) {
             ProjectEntity(id, name, fullName, starCount.toString(),
-                    dateCreated, owner.ownerName, owner.ownerAvatar)
+                    dateCreated, owner.ownerName, owner.ownerAvatar, false)
         }
     }
 }

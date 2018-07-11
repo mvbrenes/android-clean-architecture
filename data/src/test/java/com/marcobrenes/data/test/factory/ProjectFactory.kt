@@ -14,7 +14,8 @@ internal object ProjectFactory {
                     randomString(),
                     randomString(),
                     randomString(),
-                    randomString()
+                    randomString(),
+                    randomBoolean()
             )
         }
     }
@@ -28,7 +29,8 @@ internal object ProjectFactory {
                     randomString(),
                     randomString(),
                     randomString(),
-                    randomString()
+                    randomString(),
+                    randomBoolean()
             )
         }
     }

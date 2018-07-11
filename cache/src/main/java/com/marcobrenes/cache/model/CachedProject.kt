@@ -3,8 +3,10 @@ package com.marcobrenes.cache.model
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.marcobrenes.cache.db.ProjectConstants.COLUMN_IS_BOOKMARKED
 import com.marcobrenes.cache.db.ProjectConstants.COLUMN_PROJECT_ID
 import com.marcobrenes.cache.db.ProjectConstants.TABLE_NAME
+
 
 @Entity(tableName = TABLE_NAME)
 data class CachedProject(
@@ -17,4 +19,6 @@ data class CachedProject(
         var dateCreated: String,
         var ownerName: String,
         var ownerAvatar: String,
-        var isBookmarked: Boolean)
+        @ColumnInfo(name = COLUMN_IS_BOOKMARKED)
+        var isBookmarked: Boolean
+)
