@@ -42,6 +42,15 @@ dependencies {
     implementation cacheDependencies.roomRxJva
     implementation cacheDependencies.appCompat
 
+    testImplementation cacheTestDependencies.junit
+    testImplementation cacheTestDependencies.assertJ
+    testImplementation cacheTestDependencies.kotlinJUnit
+    testImplementation cacheTestDependencies.mockitoKotlin
+    testImplementation cacheTestDependencies.roomTesting
+    testImplementation cacheTestDependencies.archTesting
+    testImplementation cacheTestDependencies.testRunner
+    testImplementation cacheTestDependencies.testRules
+
     kapt cacheDependencies.daggerCompiler
     kapt cacheDependencies.roomCompiler
 }
