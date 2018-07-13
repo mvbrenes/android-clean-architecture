@@ -7,7 +7,12 @@ object ProjectDataFactory {
 
     fun makeCachedProject(): CachedProject = with(DataFactory) {
         CachedProject(randomString(), randomString(), randomString(), randomString(),
-                randomString(), randomString(), randomString(), randomBoolean())
+                randomString(), randomString(), randomString(), false)
+    }
+
+    fun makeCachedBookmarkedProject(): CachedProject = with(DataFactory) {
+        CachedProject(randomString(), randomString(), randomString(), randomString(),
+                randomString(), randomString(), randomString(), true)
     }
 
     fun makeProjectEntity(): ProjectEntity = with(DataFactory) {
