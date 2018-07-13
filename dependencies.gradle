@@ -103,6 +103,7 @@ ext {
             roomTesting  : "androidx.room:room-testing:$roomVersion",
             archTesting  : "androidx.arch.core:core-testing:$roomVersion",
             testRunner   : "androidx.test:runner:$axTestRunner",
-            testRules    : "androidx.test:rules:$axTestRules"
+            testRules    : "androidx.test:rules:$axTestRules",
+            robolectric  : "org.robolectric:robolectric:$robolectricVersion"
     ]
 }

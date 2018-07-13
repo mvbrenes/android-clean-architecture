@@ -12,6 +12,11 @@ object ProjectDataFactory {
 
     fun makeProjectEntity(): ProjectEntity = with(DataFactory) {
         ProjectEntity(randomString(), randomString(), randomString(), randomString(),
-                randomString(), randomString(), randomString(), randomBoolean())
+                randomString(), randomString(), randomString(), false)
+    }
+
+    fun makeBookmarkedProjectEntity(): ProjectEntity = with(DataFactory) {
+        ProjectEntity(randomString(), randomString(), randomString(), randomString(),
+                randomString(), randomString(), randomString(), true)
     }
 }
