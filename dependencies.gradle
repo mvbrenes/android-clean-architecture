@@ -103,7 +103,7 @@ ext {
             kotlinJUnit  : "org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion",
             mockitoKotlin: "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockitoKotlinVersion",
             roomTesting  : "androidx.room:room-testing:$roomVersion",
-            archTesting  : "androidx.arch.core:core-testing:$roomVersion",
+            archTesting  : "androidx.arch.core:core-testing:$lifecycleVersion",
             testRunner   : "androidx.test:runner:$axTestRunner",
             testRules    : "androidx.test:rules:$axTestRules",
             robolectric  : "org.robolectric:robolectric:$robolectricVersion"
@@ -128,6 +128,7 @@ ext {
             assertJ      : "org.assertj:assertj-core:$assertJVersion",
             kotlinJUnit  : "org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion",
             mockitoKotlin: "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockitoKotlinVersion",
-            robolectric  : "org.robolectric:robolectric:$robolectricVersion"
+            robolectric  : "org.robolectric:robolectric:$robolectricVersion",
+            archTesting  : "androidx.arch.core:core-testing:$lifecycleVersion"
     ]
 }

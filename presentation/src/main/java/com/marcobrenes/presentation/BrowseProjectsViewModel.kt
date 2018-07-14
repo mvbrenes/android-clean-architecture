@@ -16,7 +16,7 @@ import io.reactivex.observers.DisposableObserver
 import javax.inject.Inject
 
 class BrowseProjectsViewModel @Inject constructor(
-        private val getProjects: GetProjects,
+        private val getProjects: GetProjects?,
         private val bookmarkProject: BookmarkProject,
         private val unbookmarkProject: UnbookmarkProject,
         private val mapper: ProjectViewMapper): ViewModel() {
@@ -24,7 +24,7 @@ class BrowseProjectsViewModel @Inject constructor(
     private val liveData: MutableLiveData<Resource<List<ProjectView>>> = MutableLiveData()
 
     override fun onCleared() {
-        getProjects.dispose()
+        getProjects?.dispose()
         super.onCleared()
     }
 
@@ -34,7 +34,7 @@ class BrowseProjectsViewModel @Inject constructor(
 
     fun fetchProjects() {
         liveData.postValue(Resource(ResourceState.LOADING))
-        getProjects.execute(ProjectsSubscriber())
+        getProjects?.execute(ProjectsSubscriber())
     }
 
     fun bookmarkProject(projectId: String) {
