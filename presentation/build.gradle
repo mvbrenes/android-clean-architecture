@@ -28,7 +28,6 @@ android {
 
 dependencies {
     implementation project(':domain')
-    implementation presentationDependencies.daggerCompiler
     implementation presentationDependencies.dagger
     implementation presentationDependencies.rxKotlin
     implementation presentationDependencies.kotlin
@@ -39,6 +38,7 @@ dependencies {
     implementation presentationDependencies.lifecycleRuntime
     implementation presentationDependencies.lifecycleExtensions
     implementation presentationDependencies.lifecycleCommon
+    kapt presentationDependencies.daggerCompiler
 
     testImplementation presentationTestDependencies.junit
     testImplementation presentationTestDependencies.assertJ
