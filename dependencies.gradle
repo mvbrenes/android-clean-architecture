@@ -9,6 +9,7 @@ ext {
     axAppCompatVersion = '1.0.0-beta01'
     axSupportAnnotations = '1.0.0-alpha1'
     rxJavaVersion = '2.1.16'
+    rxAndroidVersion = '2.0.2'
     rxKotlinVersion = '2.2.0'
     javaxAnnotationVersion = '1.0'
     javaxInjectionVersion = '1'
@@ -18,7 +19,8 @@ ext {
     okhttpVersion = '3.10.0'
     retrofitVersion = '2.4.0'
 
-    roomVersion = "2.0.0-alpha1"
+    roomVersion = '2.0.0-beta01'
+    lifecycleVersion = '2.0.0-beta01'
 
     // Testing
     jUnitVersion = '4.12'
@@ -104,6 +106,28 @@ ext {
             archTesting  : "androidx.arch.core:core-testing:$roomVersion",
             testRunner   : "androidx.test:runner:$axTestRunner",
             testRules    : "androidx.test:rules:$axTestRules",
+            robolectric  : "org.robolectric:robolectric:$robolectricVersion"
+    ]
+
+    presentationDependencies = [
+            daggerCompiler     : "com.google.dagger:dagger-compiler:$daggerVersion",
+            dagger             : "com.google.dagger:dagger:$daggerVersion",
+            rxKotlin           : "io.reactivex.rxjava2:rxkotlin:$rxKotlinVersion",
+            kotlin             : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion",
+            rxAndroid          : "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion",
+            javaxAnnotations   : "javax.annotation:jsr250-api:$javaxAnnotationVersion",
+            javaxInject        : "javax.inject:javax.inject:$javaxInjectionVersion",
+            androidAnnotations : "androidx.annotation:annotation:$axSupportAnnotations",
+            lifecycleRuntime   : "androidx.lifecycle:lifecycle-runtime:$lifecycleVersion",
+            lifecycleExtensions: "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion",
+            lifecycleCommon    : "androidx.lifecycle:lifecycle-common-java8:$lifecycleVersion"
+    ]
+
+    presentationTestDependencies = [
+            junit        : "junit:junit:$jUnitVersion",
+            assertJ      : "org.assertj:assertj-core:$assertJVersion",
+            kotlinJUnit  : "org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion",
+            mockitoKotlin: "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockitoKotlinVersion",
             robolectric  : "org.robolectric:robolectric:$robolectricVersion"
     ]
 }

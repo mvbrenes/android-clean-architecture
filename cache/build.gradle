@@ -30,7 +30,6 @@ dependencies {
     compileOnly cacheDependencies.javaxAnnotations
 
     implementation project(':data')
-
     implementation cacheDependencies.dagger
     implementation cacheDependencies.gson
     implementation cacheDependencies.rxKotlin
