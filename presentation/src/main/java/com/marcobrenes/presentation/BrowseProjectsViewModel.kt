@@ -34,19 +34,19 @@ class BrowseProjectsViewModel @Inject constructor(
 
     fun fetchProjects() {
         liveData.postValue(Resource(ResourceState.LOADING))
-        return getProjects.execute(ProjectsSubscriber())
+        getProjects.execute(ProjectsSubscriber())
     }
 
     fun bookmarkProject(projectId: String) {
         liveData.postValue(Resource(ResourceState.LOADING))
-        return bookmarkProject.execute(
+        bookmarkProject.execute(
                 BookmarkProjectsSubscriber(),
                 BookmarkProject.Params.forProject(projectId))
     }
 
     fun unBookmarkProject(projectId: String) {
         liveData.postValue(Resource(ResourceState.LOADING))
-        return unbookmarkProject.execute(
+        unbookmarkProject.execute(
                 BookmarkProjectsSubscriber(),
                 UnbookmarkProject.Params.forProject(projectId))
     }
@@ -57,8 +57,7 @@ class BrowseProjectsViewModel @Inject constructor(
         override fun onNext(t: List<Project>) {
             liveData.postValue(Resource(
                     ResourceState.SUCCESS,
-                    t.map { mapper.mapToView(it) },
-                    null))
+                    t.map { mapper.mapToView(it) }))
         }
 
         override fun onError(e: Throwable) {
