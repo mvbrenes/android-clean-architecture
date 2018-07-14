@@ -5,6 +5,7 @@ import androidx.room.Room
 import com.marcobrenes.cache.db.ProjectsDatabase
 import com.marcobrenes.cache.mapper.CachedProjectMapper
 import com.marcobrenes.cache.test.factory.ProjectDataFactory
+import org.junit.After
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -24,6 +25,10 @@ class ProjectsCacheImplTest {
     private val entityMapper = CachedProjectMapper()
     private val cache = ProjectsCacheImpl(database, entityMapper)
 
+    @After fun clearDb() {
+        database.close()
+    }
+
     @Test fun clearTablesCompletes() {
         val testObserver = cache.clearProjects().test()
         testObserver.assertComplete()
@@ -31,7 +36,6 @@ class ProjectsCacheImplTest {
 
     @Test fun saveProjectsCompletes() {
         val projects = listOf(ProjectDataFactory.makeProjectEntity())
-
         val testObserver = cache.saveProjects(projects).test()
         testObserver.assertComplete()
     }
@@ -39,7 +43,6 @@ class ProjectsCacheImplTest {
     @Test fun getProjectsReturnsData() {
         val projects = listOf(ProjectDataFactory.makeProjectEntity())
         cache.saveProjects(projects).test()
-
         val testObserver = cache.getProjects().test()
         testObserver.assertValue(projects)
     }
@@ -49,7 +52,6 @@ class ProjectsCacheImplTest {
         val projects = listOf(ProjectDataFactory.makeProjectEntity(),
                 bookmarkedProject)
         cache.saveProjects(projects).test()
-
         val testObserver = cache.getBookmarkedProjects().test()
         testObserver.assertValue(listOf(bookmarkedProject))
     }
@@ -57,7 +59,6 @@ class ProjectsCacheImplTest {
     @Test fun setProjectAsBookmarkedCompletes() {
         val projects = listOf(ProjectDataFactory.makeProjectEntity())
         cache.saveProjects(projects).test()
-
         val testObserver = cache.setProjectAsBookmarked(projects[0].id).test()
         testObserver.assertComplete()
     }
@@ -65,7 +66,6 @@ class ProjectsCacheImplTest {
     @Test fun setProjectAsNotBookmarkedCompletes() {
         val projects = listOf(ProjectDataFactory.makeBookmarkedProjectEntity())
         cache.saveProjects(projects).test()
-
         val testObserver = cache.setProjectAsNotBookmarked(projects[0].id).test()
         testObserver.assertComplete()
     }
@@ -73,7 +73,6 @@ class ProjectsCacheImplTest {
     @Test fun areProjectsCacheReturnsData() {
         val projects = listOf(ProjectDataFactory.makeProjectEntity())
         cache.saveProjects(projects).test()
-
         val testObserver = cache.areProjectsCached().test()
         testObserver.assertValue(true)
     }
@@ -84,8 +83,9 @@ class ProjectsCacheImplTest {
     }
 
     @Test fun isProjectsCacheExpiredReturnsNotExpired() {
-        cache.setLastCacheTime(1000L).test()
+        cache.setLastCacheTime(System.currentTimeMillis()).test()
         val testObserver = cache.isProjectsCacheExpired().test()
+        println(testObserver.values())
         testObserver.assertValue(false)
     }
 }

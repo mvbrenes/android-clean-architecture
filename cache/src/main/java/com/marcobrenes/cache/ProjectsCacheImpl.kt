@@ -6,6 +6,7 @@ import com.marcobrenes.cache.model.Config
 import com.marcobrenes.data.model.ProjectEntity
 import com.marcobrenes.data.repository.ProjectsCache
 import io.reactivex.Completable
+import io.reactivex.Flowable
 import io.reactivex.Observable
 import io.reactivex.Single
 import javax.inject.Inject
@@ -67,11 +68,13 @@ class ProjectsCacheImpl @Inject constructor(
         }
     }
 
-    override fun isProjectsCacheExpired(): Single<Boolean> {
+    override fun isProjectsCacheExpired(): Flowable<Boolean> {
         val currentTime = System.currentTimeMillis()
         val expirationTime = (60 * 10 * 1000).toLong()
         return projectsDatabase.configDao().getConfig()
-                .single(Config(lastCacheTime = 0))
-                .map { currentTime - it.lastCacheTime > expirationTime }
+                .defaultIfEmpty(Config(lastCacheTime = 0))
+                .map {
+                    currentTime - it.lastCacheTime > expirationTime
+                }
     }
 }

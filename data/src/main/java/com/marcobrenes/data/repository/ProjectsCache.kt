@@ -2,6 +2,7 @@ package com.marcobrenes.data.repository
 
 import com.marcobrenes.data.model.ProjectEntity
 import io.reactivex.Completable
+import io.reactivex.Flowable
 import io.reactivex.Observable
 import io.reactivex.Single
 
@@ -23,5 +24,5 @@ interface ProjectsCache {
 
     fun setLastCacheTime(lastCache: Long): Completable
 
-    fun isProjectsCacheExpired(): Single<Boolean>
+    fun isProjectsCacheExpired(): Flowable<Boolean>
 }

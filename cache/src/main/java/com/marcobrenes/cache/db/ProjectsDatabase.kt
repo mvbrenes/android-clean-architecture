@@ -18,7 +18,6 @@ abstract class ProjectsDatabase : RoomDatabase() {
 
     abstract fun configDao(): ConfigDao
 
-
     companion object {
         private var INSTANCE: ProjectsDatabase? = null
         private val lock = Any()
