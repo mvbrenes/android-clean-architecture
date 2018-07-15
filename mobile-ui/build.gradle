@@ -40,7 +40,9 @@ dependencies {
     implementation mobileUIDependencies.rxKotlin
     implementation mobileUIDependencies.kotlin
     implementation mobileUIDependencies.rxAndroid
-    implementation mobileUIDependencies.glide
+    implementation(mobileUIDependencies.glide) {
+        exclude group: 'com.android.support'
+    }
     implementation mobileUIDependencies.javaxAnnotations
     implementation mobileUIDependencies.javaxInject
     implementation mobileUIDependencies.androidAnnotations
@@ -48,8 +50,9 @@ dependencies {
     implementation mobileUIDependencies.recyclerView
     implementation mobileUIDependencies.design
     implementation mobileUIDependencies.timber
-    implementation mobileUIDependencies.daggerAndroid
-    implementation mobileUIDependencies.glassfishAnnotation
+    implementation(mobileUIDependencies.daggerAndroid) {
+        exclude group: 'com.android.support'
+    }
     implementation mobileUIDependencies.roomRuntime
     implementation mobileUIDependencies.roomRxJva
     implementation mobileUIDependencies.constraintLayout
@@ -73,7 +76,9 @@ dependencies {
     androidTestImplementation(mobileUITestDependencies.espressoIntents) {
         exclude group: 'androidx.annotation', module: 'annotation'
     }
-    androidTestImplementation(mobileUITestDependencies.espressoContrib)
+    androidTestImplementation(mobileUITestDependencies.espressoContrib) {
+        exclude group: 'com.android.support'
+    }
 
     kaptTest mobileUIDependencies.daggerCompiler
     kaptAndroidTest mobileUIDependencies.daggerCompiler
