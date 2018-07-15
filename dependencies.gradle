@@ -142,6 +142,7 @@ ext {
             daggerCompiler        : "com.google.dagger:dagger-compiler:$daggerVersion",
             dagger                : "com.google.dagger:dagger:$daggerVersion",
             rxKotlin              : "io.reactivex.rxjava2:rxkotlin:$rxKotlinVersion",
+            rxJava                : "io.reactivex.rxjava2:rxjava:$rxJavaVersion",
             kotlin                : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion",
             rxAndroid             : "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion",
             glide                 : "com.github.bumptech.glide:glide:$glideVersion",

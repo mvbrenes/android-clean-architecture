@@ -33,8 +33,10 @@ dependencies {
     implementation project(':data')
     implementation project(':remote')
     implementation project(':cache')
+    implementation project(':domain')
 
     implementation mobileUIDependencies.dagger
+    implementation mobileUIDependencies.rxJava
     implementation mobileUIDependencies.rxKotlin
     implementation mobileUIDependencies.kotlin
     implementation mobileUIDependencies.rxAndroid
