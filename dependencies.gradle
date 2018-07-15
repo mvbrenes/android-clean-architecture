@@ -3,11 +3,11 @@ ext {
     androidMinSdkVersion = 21
     androidTargetSdkVersion = 28
     androidCompileSdkVersion = 28
+    buildToolsVersion = '28.0.1'
 
     // Libraries
     kotlinVersion = '1.2.51'
-    axAppCompatVersion = '1.0.0-beta01'
-    axSupportAnnotations = '1.0.0-alpha1'
+    androidXVersion = '1.0.0-beta01'
     rxJavaVersion = '2.1.16'
     rxAndroidVersion = '2.0.2'
     rxKotlinVersion = '2.2.0'
@@ -19,15 +19,21 @@ ext {
     okhttpVersion = '3.10.0'
     retrofitVersion = '2.4.0'
 
+    timberVersion = '4.7.1'
+    glideVersion = '4.7.1'
+    glassFishVersion = '10.0-b28'
+
     roomVersion = '2.0.0-beta01'
     lifecycleVersion = '2.0.0-beta01'
+    espressoVersion = '3.1.0-alpha1'
 
     // Testing
     jUnitVersion = '4.12'
     assertJVersion = '3.8.0'
     mockitoKotlinVersion = '2.0.0-RC1'
+    mockitoAndroidVersion = '2.19.1'
     robolectricVersion = '4.0-alpha-2'
-    axTestRunner = '1.1.0-alpha1'
+    axTestRunner = '1.0.2-alpha1'
     axTestRules = '1.1.0-alpha1'
 
 
@@ -65,7 +71,7 @@ ext {
             gson              : "com.google.code.gson:gson:$gsonVersion",
             javaxAnnotations  : "javax.annotation:jsr250-api:$javaxAnnotationVersion",
             javaxInject       : "javax.inject:javax.inject:$javaxInjectionVersion",
-            androidAnnotations: "androidx.annotation:annotation:$axSupportAnnotations",
+            androidAnnotations: "androidx.annotation:annotation:$androidXVersion",
             okhttp            : "com.squareup.okhttp3:okhttp:$okhttpVersion",
             okhttpInterceptor : "com.squareup.okhttp3:logging-interceptor:$okhttpVersion",
             retrofit          : "com.squareup.retrofit2:retrofit:$retrofitVersion",
@@ -90,11 +96,11 @@ ext {
             kotlin            : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion",
             javaxAnnotations  : "javax.annotation:jsr250-api:$javaxAnnotationVersion",
             javaxInject       : "javax.inject:javax.inject:$javaxInjectionVersion",
-            androidAnnotations: "androidx.annotation:annotation:$axSupportAnnotations",
+            androidAnnotations: "androidx.annotation:annotation:$androidXVersion",
             roomRuntime       : "androidx.room:room-runtime:$roomVersion",
             roomCompiler      : "androidx.room:room-compiler:$roomVersion",
             roomRxJva         : "androidx.room:room-rxjava2:$roomVersion",
-            appCompat         : "androidx.appcompat:appcompat:$axAppCompatVersion"
+            appCompat         : "androidx.appcompat:appcompat:$androidXVersion"
     ]
 
     cacheTestDependencies = [
@@ -117,7 +123,7 @@ ext {
             rxAndroid          : "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion",
             javaxAnnotations   : "javax.annotation:jsr250-api:$javaxAnnotationVersion",
             javaxInject        : "javax.inject:javax.inject:$javaxInjectionVersion",
-            androidAnnotations : "androidx.annotation:annotation:$axSupportAnnotations",
+            androidAnnotations : "androidx.annotation:annotation:$androidXVersion",
             lifecycleRuntime   : "androidx.lifecycle:lifecycle-runtime:$lifecycleVersion",
             lifecycleExtensions: "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion",
             lifecycleCommon    : "androidx.lifecycle:lifecycle-common-java8:$lifecycleVersion"
@@ -130,5 +136,41 @@ ext {
             mockitoKotlin: "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockitoKotlinVersion",
             robolectric  : "org.robolectric:robolectric:$robolectricVersion",
             archTesting  : "androidx.arch.core:core-testing:$lifecycleVersion"
+    ]
+
+    mobileUIDependencies = [
+            daggerCompiler        : "com.google.dagger:dagger-compiler:$daggerVersion",
+            dagger                : "com.google.dagger:dagger:$daggerVersion",
+            rxKotlin              : "io.reactivex.rxjava2:rxkotlin:$rxKotlinVersion",
+            kotlin                : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion",
+            rxAndroid             : "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion",
+            glide                 : "com.github.bumptech.glide:glide:$glideVersion",
+            glideCompiler         : "com.github.bumptech.glide:compiler:$glideVersion",
+            javaxAnnotations      : "javax.annotation:jsr250-api:$javaxAnnotationVersion",
+            javaxInject           : "javax.inject:javax.inject:$javaxInjectionVersion",
+            androidAnnotations    : "androidx.annotation:annotation:$androidXVersion",
+            appCompat             : "androidx.appcompat:appcompat:$androidXVersion",
+            recyclerView          : "androidx.recyclerview:recyclerview:$androidXVersion",
+            design                : "com.google.android.material:material:$androidXVersion",
+            timber                : "com.jakewharton.timber:timber:$timberVersion",
+            daggerAndroid         : "com.google.dagger:dagger-android-support:$daggerVersion",
+            daggerAndroidProcessor: "com.google.dagger:dagger-android-processor:$daggerVersion",
+            glassfishAnnotation   : "org.glassfish:javax.annotation:$glassFishVersion",
+            roomRuntime           : "androidx.room:room-runtime:$roomVersion",
+            roomCompiler          : "androidx.room:room-compiler:$roomVersion",
+            roomRxJva             : "androidx.room:room-rxjava2:$roomVersion",
+    ]
+
+    mobileUITestDependencies = [
+            junit          : "junit:junit:$jUnitVersion",
+            assertJ        : "org.assertj:assertj-core:$assertJVersion",
+            kotlinJUnit    : "org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion",
+            mockitoKotlin  : "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockitoKotlinVersion",
+            testRunner     : "androidx.test:runner:$axTestRunner",
+            testRules      : "androidx.test:rules:$axTestRules",
+            mockitoAndroid : "org.mockito:mockito-android:$mockitoAndroidVersion",
+            espressoCore   : "androidx.test.espresso:espresso-core:$espressoVersion",
+            espressoIntents: "androidx.test.espresso:espresso-intents:$espressoVersion",
+            espressoContrib: "androidx.test.espresso:espresso-contrib:$espressoVersion"
     ]
 }

@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.marcobrenes.mobile_ui">
+    package="com.marcobrenes.mobileui">
 
     <application
         android:allowBackup="true"

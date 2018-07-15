@@ -1,4 +1,4 @@
-package com.marcobrenes.mobile_ui;
+package com.marcobrenes.mobileui;
 
 import org.junit.Test;
 

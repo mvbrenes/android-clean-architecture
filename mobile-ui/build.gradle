@@ -1,0 +1,77 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion androidCompileSdkVersion
+    defaultConfig {
+        applicationId "com.marcobrenes.githubtrending.mobile_ui"
+        minSdkVersion androidMinSdkVersion
+        targetSdkVersion androidTargetSdkVersion
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    buildToolsVersion buildToolsVersion
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation project(':presentation')
+    implementation project(':data')
+    implementation project(':remote')
+    implementation project(':cache')
+
+    implementation mobileUIDependencies.dagger
+    implementation mobileUIDependencies.rxKotlin
+    implementation mobileUIDependencies.kotlin
+    implementation mobileUIDependencies.rxAndroid
+    implementation mobileUIDependencies.glide
+    implementation mobileUIDependencies.javaxAnnotations
+    implementation mobileUIDependencies.javaxInject
+    implementation mobileUIDependencies.androidAnnotations
+    implementation mobileUIDependencies.appCompat
+    implementation mobileUIDependencies.recyclerView
+    implementation mobileUIDependencies.design
+    implementation mobileUIDependencies.timber
+    implementation mobileUIDependencies.daggerAndroid
+    implementation mobileUIDependencies.glassfishAnnotation
+    implementation mobileUIDependencies.roomRuntime
+    implementation mobileUIDependencies.roomRxJva
+
+    kapt mobileUIDependencies.daggerCompiler
+    kapt mobileUIDependencies.glideCompiler
+    kapt mobileUIDependencies.daggerAndroidProcessor
+    kapt mobileUIDependencies.roomCompiler
+
+    testImplementation mobileUITestDependencies.kotlinJUnit
+
+    androidTestImplementation mobileUITestDependencies.junit
+    androidTestImplementation mobileUITestDependencies.assertJ
+    androidTestImplementation mobileUITestDependencies.mockitoKotlin
+    androidTestImplementation mobileUITestDependencies.testRunner
+    androidTestImplementation mobileUITestDependencies.testRules
+    androidTestImplementation mobileUITestDependencies.mockitoAndroid
+    androidTestImplementation(mobileUITestDependencies.espressoCore) {
+        exclude group: 'androidx.annotation', module: 'annotation'
+    }
+    androidTestImplementation(mobileUITestDependencies.espressoIntents) {
+        exclude group: 'androidx.annotation', module: 'annotation'
+    }
+    androidTestImplementation(mobileUITestDependencies.espressoContrib)
+
+    kaptTest mobileUIDependencies.daggerCompiler
+    kaptAndroidTest mobileUIDependencies.daggerCompiler
+}
