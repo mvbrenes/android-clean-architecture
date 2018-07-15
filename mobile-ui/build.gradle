@@ -52,6 +52,7 @@ dependencies {
     implementation mobileUIDependencies.glassfishAnnotation
     implementation mobileUIDependencies.roomRuntime
     implementation mobileUIDependencies.roomRxJva
+    implementation mobileUIDependencies.constraintLayout
 
     kapt mobileUIDependencies.daggerCompiler
     kapt mobileUIDependencies.glideCompiler
