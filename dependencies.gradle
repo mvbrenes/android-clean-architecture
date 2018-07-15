@@ -25,7 +25,7 @@ ext {
 
     roomVersion = '2.0.0-beta01'
     lifecycleVersion = '2.0.0-beta01'
-    espressoVersion = '3.1.0-alpha1'
+    espressoVersion = '3.1.0-alpha3'
     constraintLayoutVersion = '1.1.2'
 
     // Testing
@@ -34,8 +34,8 @@ ext {
     mockitoKotlinVersion = '2.0.0-RC1'
     mockitoAndroidVersion = '2.19.1'
     robolectricVersion = '4.0-alpha-2'
-    axTestRunner = '1.0.2-alpha1'
-    axTestRules = '1.1.0-alpha1'
+    axTestRunner = '1.1.0-alpha3'
+    axTestRules = '1.1.0-alpha3'
 
 
     domainDependencies = [

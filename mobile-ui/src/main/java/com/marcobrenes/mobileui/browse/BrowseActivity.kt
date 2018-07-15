@@ -1,8 +1,9 @@
-package com.marcobrenes.mobileui
+package com.marcobrenes.mobileui.browse
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.marcobrenes.mobileui.R
 import kotlinx.android.synthetic.main.activity_browse.*
 
 class BrowseActivity : AppCompatActivity() {
