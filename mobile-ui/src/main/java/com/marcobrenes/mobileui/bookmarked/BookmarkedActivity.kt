@@ -3,6 +3,7 @@ package com.marcobrenes.mobileui.bookmarked
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
@@ -41,6 +42,16 @@ class BookmarkedActivity : AppCompatActivity() {
         setContentView(R.layout.activity_bookmarked)
         AndroidInjection.inject(this)
         browseViewModel = ViewModelProviders.of(this, viewModelFactory).get()
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                finish()
+                true
+            } else -> super.onOptionsItemSelected(item)
+        }
     }
 
     override fun onStart() {

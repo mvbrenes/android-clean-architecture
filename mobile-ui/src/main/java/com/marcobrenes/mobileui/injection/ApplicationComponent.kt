@@ -5,12 +5,12 @@ import com.marcobrenes.mobileui.GithubTrendingApplication
 import com.marcobrenes.mobileui.injection.module.*
 import dagger.BindsInstance
 import dagger.Component
-import dagger.android.AndroidInjectionModule
+import dagger.android.support.AndroidSupportInjectionModule
 import javax.inject.Singleton
 
 @Singleton
 @Component(modules = [
-    AndroidInjectionModule::class,
+    AndroidSupportInjectionModule::class,
     ApplicationModule::class,
     UIModule::class,
     PresentationModule::class,

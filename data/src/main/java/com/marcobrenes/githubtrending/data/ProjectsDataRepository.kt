@@ -47,8 +47,6 @@ class ProjectsDataRepository @Inject constructor(
 
     override fun getBookmarkedProjects(): Observable<List<Project>> {
         return factory.getCacheDataStore().getBookmarkedProjects()
-                .map {
-                    it.map { mapper.mapFromEntity(it) }
-                }
+                .map { it.map { mapper.mapFromEntity(it) } }
     }
 }

@@ -2,8 +2,9 @@ package com.marcobrenes.githubtrending.cache.mapper
 
 import com.marcobrenes.githubtrending.cache.model.CachedProject
 import com.marcobrenes.githubtrending.data.model.ProjectEntity
+import javax.inject.Inject
 
-class CachedProjectMapper : CacheMapper<CachedProject, ProjectEntity> {
+class CachedProjectMapper @Inject constructor(): CacheMapper<CachedProject, ProjectEntity> {
 
     override fun mapFromCached(type: CachedProject): ProjectEntity {
         return with(type) {
