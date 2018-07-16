@@ -23,5 +23,10 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".bookmarked.BookmarkedActivity"
+            android:label="@string/title_bookmarked" />
+
     </application>
 </manifest>

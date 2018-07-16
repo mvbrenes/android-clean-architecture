@@ -1,4 +1,4 @@
-package com.marcobrenes.mobileui.browse
+package com.marcobrenes.mobileui.bookmarked
 
 import android.view.View
 import android.view.ViewGroup
@@ -12,13 +12,12 @@ import com.marcobrenes.mobileui.ext.inflate
 import com.marcobrenes.mobileui.model.Project
 import javax.inject.Inject
 
-class BrowseAdapter @Inject constructor() : RecyclerView.Adapter<BrowseAdapter.ViewHolder>() {
+class BookmarkedAdapter @Inject constructor() : RecyclerView.Adapter<BookmarkedAdapter.ViewHolder>() {
 
     var projects: List<Project> = arrayListOf()
-    var projectListener: ProjectListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val itemView = parent.inflate(R.layout.item_project)
+        val itemView = parent.inflate(R.layout.item_bookmarked_project)
         return ViewHolder(itemView)
     }
 
@@ -35,28 +34,11 @@ class BrowseAdapter @Inject constructor() : RecyclerView.Adapter<BrowseAdapter.V
                 .load(project.ownerAvatar)
                 .apply(RequestOptions.circleCropTransform())
                 .into(holder.avatarImage)
-
-        val starResource = if (project.isBookmarked) {
-            R.drawable.ic_star_black_24dp
-        } else {
-            R.drawable.ic_star_border_black_24dp
-        }
-
-        holder.bookmarkedImage.setImageResource(starResource)
-
-        holder.itemView.setOnClickListener {
-            if (project.isBookmarked) {
-                projectListener?.onBookmarkedProjectClicked(project.id)
-            } else {
-                projectListener?.onProjectClicked(project.id)
-            }
-        }
     }
 
     inner class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
         var avatarImage: ImageView = view.findViewById(R.id.image_owner_avatar)
         var ownerNameText: TextView = view.findViewById(R.id.text_owner_name)
         var projectNameText: TextView = view.findViewById(R.id.text_project_name)
-        var bookmarkedImage: ImageView = view.findViewById(R.id.image_bookmarked)
     }
 }

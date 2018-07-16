@@ -35,6 +35,7 @@ dependencies {
     implementation project(':cache')
     implementation project(':domain')
 
+    implementation mobileUIDependencies.ktx
     implementation mobileUIDependencies.dagger
     implementation mobileUIDependencies.rxJava
     implementation mobileUIDependencies.rxKotlin
@@ -56,6 +57,10 @@ dependencies {
     implementation mobileUIDependencies.roomRuntime
     implementation mobileUIDependencies.roomRxJva
     implementation mobileUIDependencies.constraintLayout
+
+    implementation mobileUIDependencies.lifecycleRuntime
+    implementation mobileUIDependencies.lifecycleExtensions
+    implementation mobileUIDependencies.lifecycleCommon
 
     kapt mobileUIDependencies.daggerCompiler
     kapt mobileUIDependencies.glideCompiler

@@ -142,6 +142,7 @@ ext {
     mobileUIDependencies = [
             daggerCompiler        : "com.google.dagger:dagger-compiler:$daggerVersion",
             dagger                : "com.google.dagger:dagger:$daggerVersion",
+            ktx                   : "androidx.core:core-ktx:$androidXVersion",
             rxKotlin              : "io.reactivex.rxjava2:rxkotlin:$rxKotlinVersion",
             rxJava                : "io.reactivex.rxjava2:rxjava:$rxJavaVersion",
             kotlin                : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion",
@@ -158,6 +159,9 @@ ext {
             daggerAndroid         : "com.google.dagger:dagger-android-support:$daggerVersion",
             daggerAndroidProcessor: "com.google.dagger:dagger-android-processor:$daggerVersion",
             glassfishAnnotation   : "org.glassfish:javax.annotation:$glassFishVersion",
+            lifecycleRuntime      : "androidx.lifecycle:lifecycle-runtime:$lifecycleVersion",
+            lifecycleExtensions   : "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion",
+            lifecycleCommon       : "androidx.lifecycle:lifecycle-common-java8:$lifecycleVersion",
             roomRuntime           : "androidx.room:room-runtime:$roomVersion",
             roomCompiler          : "androidx.room:room-compiler:$roomVersion",
             roomRxJva             : "androidx.room:room-rxjava2:$roomVersion",
