@@ -19,5 +19,4 @@ abstract class UIModule {
 
     @ContributesAndroidInjector
     abstract fun contributeBookmarkedActivity(): BookmarkedActivity
-
 }

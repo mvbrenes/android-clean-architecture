@@ -6,13 +6,13 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.marcobrenes.githubtrending.cache.db.ConfigConstants.QUERY_CONFIG
 import com.marcobrenes.githubtrending.cache.model.Config
-import io.reactivex.Flowable
+import io.reactivex.Single
 
 @Dao
 abstract class ConfigDao {
 
     @Query(QUERY_CONFIG)
-    abstract fun getConfig(): Flowable<Config>
+    abstract fun getConfig(): Single<Config>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract fun insertConfig(config: Config)

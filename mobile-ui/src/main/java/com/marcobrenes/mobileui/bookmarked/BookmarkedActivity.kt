@@ -43,6 +43,7 @@ class BookmarkedActivity : AppCompatActivity() {
         AndroidInjection.inject(this)
         browseViewModel = ViewModelProviders.of(this, viewModelFactory).get()
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        setupBrowseRecyler()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

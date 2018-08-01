@@ -31,9 +31,8 @@ class ProjectsCacheImpl @Inject constructor(
         }
     }
 
-    override fun getProjects(): Observable<List<ProjectEntity>> {
+    override fun getProjects(): Flowable<List<ProjectEntity>> {
         return projectsDatabase.cachedProjectsDao().getProjects()
-                .toObservable()
                 .map { it.map { mapper.mapFromCached(it) } }
     }
 
@@ -68,11 +67,11 @@ class ProjectsCacheImpl @Inject constructor(
         }
     }
 
-    override fun isProjectsCacheExpired(): Flowable<Boolean> {
+    override fun isProjectsCacheExpired(): Single<Boolean> {
         val currentTime = System.currentTimeMillis()
         val expirationTime = (60 * 10 * 1000).toLong()
         return projectsDatabase.configDao().getConfig()
-                .defaultIfEmpty(Config(lastCacheTime = 0))
+                .onErrorReturn { Config(lastCacheTime = 0) }
                 .map {
                     currentTime - it.lastCacheTime > expirationTime
                 }

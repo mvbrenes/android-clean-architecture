@@ -4,6 +4,7 @@ import com.marcobrenes.githubtrending.data.model.ProjectEntity
 import com.marcobrenes.githubtrending.data.repository.ProjectsDataStore
 import com.marcobrenes.githubtrending.data.repository.ProjectsRemote
 import io.reactivex.Completable
+import io.reactivex.Flowable
 import io.reactivex.Observable
 import javax.inject.Inject
 
@@ -11,7 +12,7 @@ class ProjectsRemoteDataStore @Inject constructor(
         private val projectsRemote: ProjectsRemote
 ) : ProjectsDataStore {
 
-    override fun getProjects(): Observable<List<ProjectEntity>> {
+    override fun getProjects(): Flowable<List<ProjectEntity>> {
         return projectsRemote.getProjects()
     }
 

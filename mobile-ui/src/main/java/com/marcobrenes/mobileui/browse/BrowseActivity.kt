@@ -3,11 +3,13 @@ package com.marcobrenes.mobileui.browse
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import com.marcobrenes.githubtrending.presentation.BrowseProjectsViewModel
 import com.marcobrenes.githubtrending.presentation.model.ProjectView
 import com.marcobrenes.githubtrending.presentation.state.Resource
@@ -20,6 +22,7 @@ import com.marcobrenes.mobileui.mapper.ProjectViewMapper
 import com.marcobrenes.mobileui.model.Project
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_browse.*
+import timber.log.Timber
 import javax.inject.Inject
 
 class BrowseActivity : AppCompatActivity() {
@@ -70,7 +73,12 @@ class BrowseActivity : AppCompatActivity() {
                 recycler_view.isVisible = false
             }
 
-            ResourceState.ERROR -> {}
+            ResourceState.ERROR -> {
+                resource.message?.let { Timber.e(it) }
+                progress.isVisible = false
+                val view: View? = findViewById(android.R.id.content)
+                view?.let { Snackbar.make(it, resource.message ?: "", Snackbar.LENGTH_INDEFINITE).show() }
+            }
         }
     }
 

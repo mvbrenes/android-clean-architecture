@@ -1,9 +1,9 @@
 package com.marcobrenes.githubtrending.data.repository
 
 import com.marcobrenes.githubtrending.data.model.ProjectEntity
-import io.reactivex.Observable
+import io.reactivex.Flowable
 
 interface ProjectsRemote {
 
-    fun getProjects(): Observable<List<ProjectEntity>>
+    fun getProjects(): Flowable<List<ProjectEntity>>
 }
