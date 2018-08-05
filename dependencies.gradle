@@ -6,7 +6,7 @@ ext {
     buildToolsVersion = '28.0.1'
 
     // Libraries
-    kotlinVersion = '1.2.51'
+    kotlinVersion = '1.2.60'
     androidXVersion = '1.0.0-beta01'
     rxJavaVersion = '2.1.16'
     rxAndroidVersion = '2.0.2'
@@ -20,7 +20,7 @@ ext {
     retrofitVersion = '2.4.0'
 
     timberVersion = '4.7.1'
-    glideVersion = '4.7.1'
+    glideVersion = '4.8.0-SNAPSHOT'
     glassFishVersion = '10.0-b28'
 
     roomVersion = '2.0.0-beta01'

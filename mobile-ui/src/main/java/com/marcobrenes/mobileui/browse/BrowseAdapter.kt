@@ -1,5 +1,7 @@
 package com.marcobrenes.mobileui.browse
 
+import android.content.Intent
+import android.net.Uri
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -44,11 +46,20 @@ class BrowseAdapter @Inject constructor() : RecyclerView.Adapter<BrowseAdapter.V
 
         holder.bookmarkedImage.setImageResource(starResource)
 
-        holder.itemView.setOnClickListener {
-            if (project.isBookmarked) {
-                projectListener?.onBookmarkedProjectClicked(project.id)
-            } else {
-                projectListener?.onProjectClicked(project.id)
+        holder.itemView.apply {
+            setOnClickListener {
+                if (project.isBookmarked) {
+                    projectListener?.onBookmarkedProjectClicked(project.id)
+                } else {
+                    projectListener?.onProjectClicked(project.id)
+                }
+            }
+
+            setOnLongClickListener {
+                val url = "https://www.github.com/${project.fullName}"
+                val intent = Intent(Intent.ACTION_VIEW).apply { data = Uri.parse(url) }
+                context.startActivity(intent)
+                true
             }
         }
     }

@@ -2,6 +2,8 @@ package com.marcobrenes.mobileui
 
 import android.app.Activity
 import android.app.Application
+import com.bumptech.glide.annotation.GlideModule
+import com.bumptech.glide.module.AppGlideModule
 import com.marcobrenes.mobileui.injection.DaggerApplicationComponent
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
@@ -32,3 +34,6 @@ class GithubTrendingApplication : Application(), HasActivityInjector {
         Timber.plant(Timber.DebugTree())
     }
 }
+
+@GlideModule
+class MyAppGlideModule : AppGlideModule()
