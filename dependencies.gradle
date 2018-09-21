@@ -3,10 +3,10 @@ ext {
     androidMinSdkVersion = 21
     androidTargetSdkVersion = 28
     androidCompileSdkVersion = 28
-    buildToolsVersion = '28.0.1'
+    buildToolsVersion = '28.0.2'
 
     // Libraries
-    kotlinVersion = '1.2.60'
+    kotlinVersion = '1.2.70'
     androidXVersion = '1.0.0-beta01'
     rxJavaVersion = '2.1.16'
     rxAndroidVersion = '2.0.2'
@@ -169,6 +169,7 @@ ext {
     ]
 
     mobileUITestDependencies = [
+            dagger         : "com.google.dagger:dagger:$daggerVersion",
             junit          : "junit:junit:$jUnitVersion",
             assertJ        : "org.assertj:assertj-core:$assertJVersion",
             kotlinJUnit    : "org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion",

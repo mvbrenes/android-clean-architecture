@@ -1,16 +1,13 @@
 package com.marcobrenes.githubtrending.remote
 
 import com.marcobrenes.githubtrending.data.model.ProjectEntity
-import com.marcobrenes.githubtrending.remote.ProjectsRemoteImpl.Companion.ORDER
-import com.marcobrenes.githubtrending.remote.ProjectsRemoteImpl.Companion.QUERY
-import com.marcobrenes.githubtrending.remote.ProjectsRemoteImpl.Companion.SORT_BY
 import com.marcobrenes.githubtrending.remote.mapper.ProjectsResponseModelMapper
 import com.marcobrenes.githubtrending.remote.model.ProjectModel
 import com.marcobrenes.githubtrending.remote.model.ProjectsResponseModel
 import com.marcobrenes.githubtrending.remote.service.GithubTrendingService
 import com.marcobrenes.githubtrending.remote.test.factory.ProjectDataFactory
 import com.nhaarman.mockitokotlin2.*
-import io.reactivex.Observable
+import io.reactivex.Flowable
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
@@ -23,7 +20,7 @@ class ProjectsRemoteImpTest {
     private val remote = ProjectsRemoteImpl(service, mapper)
 
     @Test fun getProjectsCompletes() {
-        stubGithubTrendingServiceSearchRepositories(Observable.just(
+        stubGithubTrendingServiceSearchRepositories(Flowable.just(
                 ProjectDataFactory.makeProjectsResponse()))
         stubProjectsResponseModelMapperFromModel(any(), ProjectDataFactory.makeProjectEntity())
 
@@ -32,8 +29,8 @@ class ProjectsRemoteImpTest {
     }
 
     @Test fun getProjectsCallServer() {
-        stubGithubTrendingServiceSearchRepositories(Observable.just(
-                ProjectDataFactory.makeProjectsResponse()))
+        stubGithubTrendingServiceSearchRepositories(
+                Flowable.just(ProjectDataFactory.makeProjectsResponse()))
         stubProjectsResponseModelMapperFromModel(any(), ProjectDataFactory.makeProjectEntity())
 
         remote.getProjects().test()
@@ -42,7 +39,7 @@ class ProjectsRemoteImpTest {
 
     @Test fun getProjectsReturnsData() {
         val response = ProjectDataFactory.makeProjectsResponse()
-        stubGithubTrendingServiceSearchRepositories(Observable.just(response))
+        stubGithubTrendingServiceSearchRepositories(Flowable.just(response))
         val entities = mutableListOf<ProjectEntity>()
         response.items.forEach {
             val entity = ProjectDataFactory.makeProjectEntity()
@@ -54,7 +51,7 @@ class ProjectsRemoteImpTest {
     }
 
     @Test fun getProjectsCallsWithCorrectParameter() {
-        stubGithubTrendingServiceSearchRepositories(Observable.just(
+        stubGithubTrendingServiceSearchRepositories(Flowable.just(
                 ProjectDataFactory.makeProjectsResponse()))
         stubProjectsResponseModelMapperFromModel(any(), ProjectDataFactory.makeProjectEntity())
 
@@ -62,8 +59,8 @@ class ProjectsRemoteImpTest {
         verify(service).searchRepositories(QUERY, SORT_BY, ORDER)
     }
 
-    private fun stubGithubTrendingServiceSearchRepositories(observable: Observable<ProjectsResponseModel>) {
-        whenever(service.searchRepositories(any(), any(), any())) doReturn observable
+    private fun stubGithubTrendingServiceSearchRepositories(stub: Flowable<ProjectsResponseModel>) {
+        whenever(service.searchRepositories(any(), any(), any())) doReturn stub
     }
 
     private fun stubProjectsResponseModelMapperFromModel(model: ProjectModel, entity: ProjectEntity) {

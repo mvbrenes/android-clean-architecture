@@ -39,7 +39,6 @@ dependencies {
     implementation presentationDependencies.lifecycleExtensions
     implementation presentationDependencies.lifecycleCommon
     kapt presentationDependencies.daggerCompiler
-
     testImplementation presentationTestDependencies.junit
     testImplementation presentationTestDependencies.assertJ
     testImplementation presentationTestDependencies.kotlinJUnit

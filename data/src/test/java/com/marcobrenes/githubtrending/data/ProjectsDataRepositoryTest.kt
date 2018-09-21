@@ -33,13 +33,13 @@ class ProjectsDataRepositoryTest {
     @Before fun setup() {
         stubFactoryGetDataStore()
         stubFactoryGetCacheDataStore()
-        stubIsCacheExpired(Flowable.just(false))
+        stubIsCacheExpired(Single.just(false))
         stubAreProjectsCached(Single.just(false))
         stubSaveProjects(Completable.complete())
     }
 
     @Test fun getProjectsCompletes() {
-        stubGetProjects(Observable.just(listOf(ProjectFactory.makeProjectEntity())))
+        stubGetProjects(Flowable.just(listOf(ProjectFactory.makeProjectEntity())))
         stubMapper(ProjectFactory.makeProject(), any())
 
         val testObserver = repository.getProjects().test()
@@ -49,7 +49,7 @@ class ProjectsDataRepositoryTest {
     @Test fun getProjectsReturnsData() {
         val projectEntity = ProjectFactory.makeProjectEntity()
         val project = ProjectFactory.makeProject()
-        stubGetProjects(Observable.just(listOf(projectEntity)))
+        stubGetProjects(Flowable.just(listOf(projectEntity)))
         stubMapper(project, projectEntity)
 
         val testObserver = repository.getProjects().test()
@@ -96,7 +96,7 @@ class ProjectsDataRepositoryTest {
         whenever(store.setProjectAsNotBookmarked(any())) doReturn completable
     }
 
-    private fun stubIsCacheExpired(single: Flowable<Boolean>) {
+    private fun stubIsCacheExpired(single: Single<Boolean>) {
         whenever(cache.isProjectsCacheExpired()) doReturn single
     }
 
@@ -108,8 +108,8 @@ class ProjectsDataRepositoryTest {
         whenever(mapper.mapFromEntity(entity)) doReturn model
     }
 
-    private fun stubGetProjects(observable: Observable<List<ProjectEntity>>) {
-        whenever(store.getProjects()) doReturn observable
+    private fun stubGetProjects(stub: Flowable<List<ProjectEntity>>) {
+        whenever(store.getProjects()) doReturn stub
     }
 
     private fun stubGetBookmarkedProjects(observable: Observable<List<ProjectEntity>>) {

@@ -9,9 +9,12 @@ import com.marcobrenes.githubtrending.cache.dao.ConfigDao
 import com.marcobrenes.githubtrending.cache.model.CachedProject
 import com.marcobrenes.githubtrending.cache.model.Config
 
-@Database(entities = [
-    CachedProject::class,
-    Config::class], version = 1)
+@Database(
+        entities = [
+            CachedProject::class,
+            Config::class],
+        version = 1,
+        exportSchema = false)
 abstract class ProjectsDatabase : RoomDatabase() {
 
     abstract fun cachedProjectsDao(): CachedProjectsDao

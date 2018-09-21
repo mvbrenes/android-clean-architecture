@@ -34,7 +34,6 @@ dependencies {
     implementation project(':remote')
     implementation project(':cache')
     implementation project(':domain')
-
     implementation mobileUIDependencies.ktx
     implementation mobileUIDependencies.dagger
     implementation mobileUIDependencies.rxJava
@@ -57,16 +56,13 @@ dependencies {
     implementation mobileUIDependencies.roomRuntime
     implementation mobileUIDependencies.roomRxJva
     implementation mobileUIDependencies.constraintLayout
-
     implementation mobileUIDependencies.lifecycleRuntime
     implementation mobileUIDependencies.lifecycleExtensions
     implementation mobileUIDependencies.lifecycleCommon
-
     kapt mobileUIDependencies.daggerCompiler
     kapt mobileUIDependencies.glideCompiler
     kapt mobileUIDependencies.daggerAndroidProcessor
     kapt mobileUIDependencies.roomCompiler
-
     testImplementation mobileUITestDependencies.kotlinJUnit
 
     androidTestImplementation mobileUITestDependencies.junit
@@ -75,6 +71,7 @@ dependencies {
     androidTestImplementation mobileUITestDependencies.testRunner
     androidTestImplementation mobileUITestDependencies.testRules
     androidTestImplementation mobileUITestDependencies.mockitoAndroid
+    androidTestImplementation mobileUITestDependencies.dagger
     androidTestImplementation(mobileUITestDependencies.espressoCore) {
         exclude group: 'androidx.annotation', module: 'annotation'
     }
@@ -84,7 +81,7 @@ dependencies {
     androidTestImplementation(mobileUITestDependencies.espressoContrib) {
         exclude group: 'com.android.support'
     }
-
     kaptTest mobileUIDependencies.daggerCompiler
     kaptAndroidTest mobileUIDependencies.daggerCompiler
+    kaptAndroidTest mobileUIDependencies.daggerAndroidProcessor
 }

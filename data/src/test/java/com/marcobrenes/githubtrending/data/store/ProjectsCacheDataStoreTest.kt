@@ -6,6 +6,7 @@ import com.marcobrenes.githubtrending.data.test.factory.DataFactory
 import com.marcobrenes.githubtrending.data.test.factory.ProjectFactory
 import com.nhaarman.mockitokotlin2.*
 import io.reactivex.Completable
+import io.reactivex.Flowable
 import io.reactivex.Observable
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -19,20 +20,20 @@ class ProjectsCacheDataStoreTest {
     private val store = ProjectsCacheDataStore(cache)
 
     @Test fun getProjectsCompletes() {
-        stubProjectsCacheGetProjects(Observable.just(listOf(ProjectFactory.makeProjectEntity())))
+        stubProjectsCacheGetProjects(Flowable.just(listOf(ProjectFactory.makeProjectEntity())))
         val testObserver = store.getProjects().test()
         testObserver.assertComplete()
     }
 
     @Test fun getProjectsReturnsData() {
         val data = listOf(ProjectFactory.makeProjectEntity())
-        stubProjectsCacheGetProjects(Observable.just(data))
+        stubProjectsCacheGetProjects(Flowable.just(data))
         val testObserver = store.getProjects().test()
         testObserver.assertValue(data)
     }
 
     @Test fun getProjectsCallCacheSource() {
-        stubProjectsCacheGetProjects(Observable.just(listOf(ProjectFactory.makeProjectEntity())))
+        stubProjectsCacheGetProjects(Flowable.just(listOf(ProjectFactory.makeProjectEntity())))
         store.getProjects().test()
         verify(cache).getProjects()
     }
@@ -119,8 +120,8 @@ class ProjectsCacheDataStoreTest {
         verify(cache).setProjectAsNotBookmarked(projectId)
     }
 
-    private fun stubProjectsCacheGetProjects(observable: Observable<List<ProjectEntity>>) {
-        whenever(cache.getProjects()) doReturn observable
+    private fun stubProjectsCacheGetProjects(stub: Flowable<List<ProjectEntity>>) {
+        whenever(cache.getProjects()) doReturn stub
     }
 
     private fun stubProjectsCacheSaveProjects(completable: Completable) {

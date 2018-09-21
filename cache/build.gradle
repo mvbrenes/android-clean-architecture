@@ -28,7 +28,6 @@ android {
 
 dependencies {
     compileOnly cacheDependencies.javaxAnnotations
-
     implementation project(':data')
     implementation cacheDependencies.dagger
     implementation cacheDependencies.gson
@@ -40,7 +39,6 @@ dependencies {
     implementation cacheDependencies.roomRuntime
     implementation cacheDependencies.roomRxJva
     implementation cacheDependencies.appCompat
-
     testImplementation cacheTestDependencies.junit
     testImplementation cacheTestDependencies.assertJ
     testImplementation cacheTestDependencies.kotlinJUnit
@@ -50,7 +48,6 @@ dependencies {
     testImplementation cacheTestDependencies.testRunner
     testImplementation cacheTestDependencies.testRules
     testImplementation cacheTestDependencies.robolectric
-
     kapt cacheDependencies.daggerCompiler
     kapt cacheDependencies.roomCompiler
 }
