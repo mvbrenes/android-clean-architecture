@@ -33,13 +33,14 @@ class ProjectsCacheImpl @Inject constructor(
 
     override fun getProjects(): Flowable<List<ProjectEntity>> {
         return projectsDatabase.cachedProjectsDao().getProjects()
-                .map { it.map { mapper.mapFromCached(it) } }
+                .map { list -> list.map { mapper.mapFromCached(it) } }
     }
 
     override fun getBookmarkedProjects(): Observable<List<ProjectEntity>> {
-        return projectsDatabase.cachedProjectsDao().getBookmarkedProjects()
+        return projectsDatabase.cachedProjectsDao()
+                .getBookmarkedProjects()
                 .toObservable()
-                .map { it.map { mapper.mapFromCached(it) } }
+                .map { list -> list.map { mapper.mapFromCached(it) } }
     }
 
     override fun setProjectAsBookmarked(projectId: String): Completable {
@@ -72,8 +73,6 @@ class ProjectsCacheImpl @Inject constructor(
         val expirationTime = (60 * 10 * 1000).toLong()
         return projectsDatabase.configDao().getConfig()
                 .onErrorReturn { Config(lastCacheTime = 0) }
-                .map {
-                    currentTime - it.lastCacheTime > expirationTime
-                }
+                .map { currentTime - it.lastCacheTime > expirationTime }
     }
 }

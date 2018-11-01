@@ -8,8 +8,9 @@ buildscript {
     }
     dependencies {
         //noinspection GradleDependency
-        classpath 'com.android.tools.build:gradle:3.2.0-rc03'
+        classpath 'com.android.tools.build:gradle:3.2.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+        classpath 'com.android.tools.build.jetifier:jetifier-processor:1.0.0-beta02'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -27,6 +28,30 @@ allprojects {
         maven {
             name 'glide-snapshot'
             url 'http://oss.sonatype.org/content/repositories/snapshots'
+        }
+    }
+
+    tasks.withType(JavaCompile).all {
+        options.compilerArgs += [
+                '-Adagger.formatGeneratedSource=disabled',
+                '-Adagger.gradle.incremental'
+        ]
+    }
+    afterEvaluate {
+        def kapt = extensions.findByName('kapt')
+        if (kapt != null) {
+            kapt.arguments {
+                arg("dagger.formatGeneratedSource", "disabled")
+            }
+        }
+    }
+
+    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+        kotlinOptions {
+            jvmTarget = "1.8"
+            freeCompilerArgs = [
+                    '-progressive'
+            ]
         }
     }
 }

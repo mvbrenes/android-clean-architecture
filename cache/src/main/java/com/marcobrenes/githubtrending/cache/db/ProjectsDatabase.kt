@@ -8,6 +8,7 @@ import com.marcobrenes.githubtrending.cache.dao.CachedProjectsDao
 import com.marcobrenes.githubtrending.cache.dao.ConfigDao
 import com.marcobrenes.githubtrending.cache.model.CachedProject
 import com.marcobrenes.githubtrending.cache.model.Config
+import com.marcobrenes.githubtrending.cache.model.SingletonHolder
 
 @Database(
         entities = [
@@ -21,22 +22,11 @@ abstract class ProjectsDatabase : RoomDatabase() {
 
     abstract fun configDao(): ConfigDao
 
-    companion object {
-        private var INSTANCE: ProjectsDatabase? = null
-        private val lock = Any()
-
-        fun getInstance(context: Context): ProjectsDatabase {
-            if (INSTANCE == null) {
-                synchronized(lock) {
-                    if (INSTANCE == null) {
-                        INSTANCE = Room.databaseBuilder(context.applicationContext,
-                                ProjectsDatabase::class.java, "projects.db")
-                                .build()
-                    }
-                    return INSTANCE as ProjectsDatabase
-                }
-            }
-            return INSTANCE as ProjectsDatabase
-        }
-    }
+    companion object : SingletonHolder<ProjectsDatabase, Context>({
+        Room.databaseBuilder(
+                it.applicationContext,
+                ProjectsDatabase::class.java,
+                "projects.db"
+        ).build()
+    })
 }
