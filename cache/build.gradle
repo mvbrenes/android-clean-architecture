@@ -47,6 +47,7 @@ dependencies {
     testImplementation cacheTestDependencies.archTesting
     testImplementation cacheTestDependencies.testRunner
     testImplementation cacheTestDependencies.testRules
+    testImplementation cacheTestDependencies.testCore
     testImplementation cacheTestDependencies.robolectric
     kapt cacheDependencies.daggerCompiler
     kapt cacheDependencies.roomCompiler
