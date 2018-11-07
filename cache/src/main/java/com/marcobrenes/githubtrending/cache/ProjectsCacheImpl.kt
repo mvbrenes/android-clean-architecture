@@ -58,7 +58,7 @@ class ProjectsCacheImpl @Inject constructor(
     }
 
     override fun areProjectsCached(): Single<Boolean> {
-        return projectsDatabase.cachedProjectsDao().getProjects().isEmpty.map { !it }
+        return projectsDatabase.cachedProjectsDao().countSavedProjects().map { it > 0 }
     }
 
     override fun setLastCacheTime(lastCache: Long): Completable {

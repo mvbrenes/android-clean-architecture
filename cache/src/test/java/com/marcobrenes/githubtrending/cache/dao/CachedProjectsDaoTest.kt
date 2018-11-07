@@ -27,6 +27,13 @@ class CachedProjectsDaoTest {
         database.close()
     }
 
+    @Test fun countSavedProjectsReturnsData() {
+        val projects = with(ProjectDataFactory) { listOf(makeCachedProject(), makeCachedProject()) }
+        database.cachedProjectsDao().insertProjects(projects)
+        val testObserver = database.cachedProjectsDao().countSavedProjects().test()
+        testObserver.assertValue(projects.size)
+    }
+
     @Test fun getProjectsReturnsData() {
         val project = ProjectDataFactory.makeCachedProject()
         database.cachedProjectsDao().insertProjects(listOf(project))

@@ -40,6 +40,8 @@ dependencies {
     implementation mobileUIDependencies.rxKotlin
     implementation mobileUIDependencies.kotlin
     implementation mobileUIDependencies.rxAndroid
+    implementation mobileUIDependencies.coroutines
+    implementation mobileUIDependencies.coroutinesAndriod
     implementation(mobileUIDependencies.glide) {
         exclude group: 'com.android.support'
     }

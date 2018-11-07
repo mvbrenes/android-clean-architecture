@@ -7,6 +7,7 @@ ext {
 
     // Libraries
     kotlinVersion = '1.3.0'
+    kotlinXCoroutineVersion = '1.0.0'
     androidXVersion = '1.0.0'
     rxJavaVersion = '2.2.3'
     rxAndroidVersion = '2.1.0'
@@ -37,10 +38,13 @@ ext {
     robolectricVersion = '4.0.1'
     axTestRunner = '1.1.0'
     axTestRules = '1.1.0'
+    axTestCore = '1.0.0'
 
 
     domainDependencies = [
             kotlin          : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion",
+            coroutines      : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinXCoroutineVersion",
+            coroutinesRx    : "org.jetbrains.kotlinx:kotlinx-coroutines-rx2:$kotlinXCoroutineVersion",
             javaxAnnotations: "javax.annotation:jsr250-api:$javaxAnnotationVersion",
             javaxInject     : "javax.inject:javax.inject:$javaxInjectionVersion",
             rxJava          : "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
@@ -54,6 +58,7 @@ ext {
 
     dataDependencies = [
             kotlin          : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion",
+            coroutines      : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinXCoroutineVersion",
             rxKotlin        : "io.reactivex.rxjava2:rxkotlin:$rxKotlinVersion",
             javaxAnnotations: "javax.annotation:jsr250-api:$javaxAnnotationVersion",
             javaxInject     : "javax.inject:javax.inject:$javaxInjectionVersion"
@@ -69,6 +74,7 @@ ext {
 
     remoteDependencies = [
             kotlin            : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion",
+            coroutines        : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinXCoroutineVersion",
             rxKotlin          : "io.reactivex.rxjava2:rxkotlin:$rxKotlinVersion",
             gson              : "com.google.code.gson:gson:$gsonVersion",
             javaxAnnotations  : "javax.annotation:jsr250-api:$javaxAnnotationVersion",
@@ -96,6 +102,7 @@ ext {
             gson              : "com.google.code.gson:gson:$gsonVersion",
             rxKotlin          : "io.reactivex.rxjava2:rxkotlin:$rxKotlinVersion",
             kotlin            : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion",
+            coroutines        : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinXCoroutineVersion",
             javaxAnnotations  : "javax.annotation:jsr250-api:$javaxAnnotationVersion",
             javaxInject       : "javax.inject:javax.inject:$javaxInjectionVersion",
             androidAnnotations: "androidx.annotation:annotation:$androidXVersion",
@@ -114,6 +121,7 @@ ext {
             archTesting  : "androidx.arch.core:core-testing:$lifecycleVersion",
             testRunner   : "androidx.test:runner:$axTestRunner",
             testRules    : "androidx.test:rules:$axTestRules",
+            testCore     : "androidx.test:core:$axTestCore",
             robolectric  : "org.robolectric:robolectric:$robolectricVersion"
     ]
 
@@ -122,6 +130,7 @@ ext {
             dagger             : "com.google.dagger:dagger:$daggerVersion",
             rxKotlin           : "io.reactivex.rxjava2:rxkotlin:$rxKotlinVersion",
             kotlin             : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion",
+            coroutines         : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinXCoroutineVersion",
             rxAndroid          : "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion",
             javaxAnnotations   : "javax.annotation:jsr250-api:$javaxAnnotationVersion",
             javaxInject        : "javax.inject:javax.inject:$javaxInjectionVersion",
@@ -147,6 +156,8 @@ ext {
             rxKotlin              : "io.reactivex.rxjava2:rxkotlin:$rxKotlinVersion",
             rxJava                : "io.reactivex.rxjava2:rxjava:$rxJavaVersion",
             kotlin                : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion",
+            coroutines            : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinXCoroutineVersion",
+            coroutinesAndriod     : "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinXCoroutineVersion",
             rxAndroid             : "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion",
             glide                 : "com.github.bumptech.glide:glide:$glideVersion",
             glideCompiler         : "com.github.bumptech.glide:compiler:$glideVersion",

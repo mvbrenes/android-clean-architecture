@@ -2,6 +2,7 @@ package com.marcobrenes.githubtrending.cache
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.room.Room
+import androidx.test.core.app.ApplicationProvider
 import com.marcobrenes.githubtrending.cache.db.ProjectsDatabase
 import com.marcobrenes.githubtrending.cache.mapper.CachedProjectMapper
 import com.marcobrenes.githubtrending.cache.test.factory.ProjectDataFactory
@@ -10,15 +11,16 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
-import org.robolectric.RuntimeEnvironment
+import org.robolectric.annotation.Config
 
 @RunWith(RobolectricTestRunner::class)
+@Config(manifest = Config.NONE)
 class ProjectsCacheImplTest {
 
     @get:Rule var instantTaskExecutorRule = InstantTaskExecutorRule()
 
     private val database = Room.inMemoryDatabaseBuilder(
-            RuntimeEnvironment.application.applicationContext,
+            ApplicationProvider.getApplicationContext(),
             ProjectsDatabase::class.java)
             .allowMainThreadQueries()
             .build()
@@ -75,6 +77,11 @@ class ProjectsCacheImplTest {
         cache.saveProjects(projects).test()
         val testObserver = cache.areProjectsCached().test()
         testObserver.assertValue(true)
+    }
+
+    @Test fun areProjectsCacheNotCachedReturnsData() {
+        val testObserver = cache.areProjectsCached().test()
+        testObserver.assertValue(false)
     }
 
     @Test fun setLastCacheTimeCompletes() {
