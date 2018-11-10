@@ -2,6 +2,7 @@ package com.marcobrenes.githubtrending.cache.dao
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.room.Room
+import androidx.test.core.app.ApplicationProvider
 import com.marcobrenes.githubtrending.cache.db.ProjectsDatabase
 import com.marcobrenes.githubtrending.cache.test.factory.ConfigDataFactory
 import org.junit.After
@@ -18,7 +19,7 @@ class ConfigDaoTest {
     @JvmField var instantTaskExecutorRule = InstantTaskExecutorRule()
 
     private val database = Room.inMemoryDatabaseBuilder(
-            RuntimeEnvironment.application.applicationContext,
+            ApplicationProvider.getApplicationContext(),
             ProjectsDatabase::class.java)
             .allowMainThreadQueries()
             .build()

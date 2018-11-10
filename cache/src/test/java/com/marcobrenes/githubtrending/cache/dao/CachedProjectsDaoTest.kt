@@ -2,6 +2,7 @@ package com.marcobrenes.githubtrending.cache.dao
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.room.Room
+import androidx.test.core.app.ApplicationProvider
 import com.marcobrenes.githubtrending.cache.db.ProjectsDatabase
 import com.marcobrenes.githubtrending.cache.test.factory.ProjectDataFactory
 import org.junit.After
@@ -9,16 +10,16 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
-import org.robolectric.RuntimeEnvironment
+import org.robolectric.annotation.Config
 
 @RunWith(RobolectricTestRunner::class)
+@Config(manifest = Config.NONE)
 class CachedProjectsDaoTest {
 
-    @Rule
-    @JvmField var instantTaskExecutorRule = InstantTaskExecutorRule()
+    @get:Rule val instantTaskExecutorRule = InstantTaskExecutorRule()
 
     private val database = Room.inMemoryDatabaseBuilder(
-            RuntimeEnvironment.application.applicationContext,
+            ApplicationProvider.getApplicationContext(),
             ProjectsDatabase::class.java)
             .allowMainThreadQueries()
             .build()
@@ -27,11 +28,16 @@ class CachedProjectsDaoTest {
         database.close()
     }
 
-    @Test fun countSavedProjectsReturnsData() {
+    @Test fun cachedProjectsExistReturnsData() {
         val projects = with(ProjectDataFactory) { listOf(makeCachedProject(), makeCachedProject()) }
         database.cachedProjectsDao().insertProjects(projects)
-        val testObserver = database.cachedProjectsDao().countSavedProjects().test()
-        testObserver.assertValue(projects.size)
+        val testObserver = database.cachedProjectsDao().cachedProjectsExist().test()
+        testObserver.assertValue(1)
+    }
+
+    @Test fun `cachedProjects returns zero when cache empty`() {
+        val testObserver = database.cachedProjectsDao().cachedProjectsExist().test()
+        testObserver.assertValue(0)
     }
 
     @Test fun getProjectsReturnsData() {
