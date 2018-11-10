@@ -188,6 +188,7 @@ ext {
             mockitoKotlin  : "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockitoKotlinVersion",
             testRunner     : "androidx.test:runner:$axTestRunner",
             testRules      : "androidx.test:rules:$axTestRules",
+            testCore     : "androidx.test:core:$axTestCore",
             mockitoAndroid : "org.mockito:mockito-android:$mockitoAndroidVersion",
             espressoCore   : "androidx.test.espresso:espresso-core:$espressoVersion",
             espressoIntents: "androidx.test.espresso:espresso-intents:$espressoVersion",

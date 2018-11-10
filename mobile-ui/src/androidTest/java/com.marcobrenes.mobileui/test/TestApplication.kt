@@ -2,7 +2,7 @@ package com.marcobrenes.mobileui.test
 
 import android.app.Activity
 import android.app.Application
-import androidx.test.InstrumentationRegistry
+import androidx.test.core.app.ApplicationProvider
 import com.marcobrenes.mobileui.injection.TestApplicationComponent
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
@@ -13,8 +13,7 @@ class TestApplication : Application(), HasActivityInjector {
 
     companion object {
         fun appComponent(): TestApplicationComponent {
-            return (InstrumentationRegistry.getTargetContext().applicationContext
-                    as TestApplication).appComponent
+            return (ApplicationProvider.getApplicationContext<TestApplication>()).appComponent
         }
     }
 

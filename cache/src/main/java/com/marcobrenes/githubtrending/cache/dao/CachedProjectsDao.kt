@@ -6,7 +6,7 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.marcobrenes.githubtrending.cache.db.ProjectConstants.DELETE_PROJECTS
 import com.marcobrenes.githubtrending.cache.db.ProjectConstants.QUERY_BOOKMARKED_PROJECTS
-import com.marcobrenes.githubtrending.cache.db.ProjectConstants.QUERY_COUNT
+import com.marcobrenes.githubtrending.cache.db.ProjectConstants.QUERY_EXISTS
 import com.marcobrenes.githubtrending.cache.db.ProjectConstants.QUERY_PROJECTS
 import com.marcobrenes.githubtrending.cache.db.ProjectConstants.QUERY_UPDATE_BOOKMARK_STATUS
 import com.marcobrenes.githubtrending.cache.model.CachedProject
@@ -20,8 +20,8 @@ abstract class CachedProjectsDao {
     @JvmSuppressWildcards
     abstract fun getProjects(): Flowable<List<CachedProject>>
 
-    @Query(QUERY_COUNT)
-    abstract fun countSavedProjects(): Single<Int>
+    @Query(QUERY_EXISTS)
+    abstract fun cachedProjectsExist(): Single<Int>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     @JvmSuppressWildcards
