@@ -42,9 +42,7 @@ class BrowseActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        browseViewModel.getProjects().observe(this, Observer {
-            handleDataState(it)
-        })
+        browseViewModel.getProjects().observe(this, Observer(handleDataState))
         browseViewModel.fetchProjects()
     }
 
@@ -63,7 +61,7 @@ class BrowseActivity : AppCompatActivity() {
         }
     }
 
-    private fun handleDataState(resource: Resource<List<ProjectView>>) {
+    private val handleDataState: (Resource<List<ProjectView>>) -> Unit = { resource ->
         when (resource.status) {
             ResourceState.SUCCESS -> {
                 setupScreenForSuccess(resource.data?.map { mapper.mapToView(it) })
@@ -88,8 +86,6 @@ class BrowseActivity : AppCompatActivity() {
             browseAdapter.projects = it
             browseAdapter.notifyDataSetChanged()
             recycler_view.isVisible = true
-        } ?: run {
-
         }
     }
 

@@ -14,11 +14,11 @@ abstract class ObservableUseCase<T, in Params> constructor(
 
     abstract fun buildUseCaseObservable(params: Params? = null): Observable<T>
 
-    open fun execute(singleObserver: DisposableObserver<T>, params: Params? = null) {
-        val single = this.buildUseCaseObservable(params)
+    open fun execute(observer: DisposableObserver<T>, params: Params? = null) {
+        val observable = this.buildUseCaseObservable(params)
                 .subscribeOn(Schedulers.io())
                 .observeOn(postExecutionThread.scheduler)
-        addDisposable(single.subscribeWith(singleObserver))
+        addDisposable(observable.subscribeWith(observer))
     }
 
     private fun addDisposable(disposable: Disposable) {
