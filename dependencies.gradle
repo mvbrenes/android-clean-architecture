@@ -31,14 +31,15 @@ ext {
     // Testing
     jUnitVersion = '4.12'
     assertJVersion = '3.8.0'
-    mockitoKotlinVersion = '2.0.0-RC2'
+    mockitoKotlinVersion = '2.0.0'
     byteBuddyVersion = '1.8.22'
     mockitoAndroidVersion = '2.22.0'
     robolectricVersion = '4.0.1'
     axTestRunner = '1.1.0'
     axTestRules = '1.1.0'
     axTestCore = '1.0.0'
-
+    axTestJunit = '1.0.0'
+    rxIdler = '0.9.0'
 
     domainDependencies = [
             kotlin          : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion",
@@ -183,6 +184,8 @@ ext {
             testRunner            : "androidx.test:runner:$axTestRunner",
             testRules             : "androidx.test:rules:$axTestRules",
             testCore              : "androidx.test:core:$axTestCore",
+            testExtJunit          : "androidx.test.ext:junit:$axTestJunit",
+            rxIdler               : "com.squareup.rx.idler:rx2-idler:$rxIdler",
             mockitoAndroid        : "org.mockito:mockito-android:$mockitoAndroidVersion",
             espressoCore          : "androidx.test.espresso:espresso-core:$espressoVersion",
             espressoIntents       : "androidx.test.espresso:espresso-intents:$espressoVersion",

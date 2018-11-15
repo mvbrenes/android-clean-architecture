@@ -6,17 +6,16 @@ import com.marcobrenes.githubtrending.data.repository.ProjectsCache
 import com.nhaarman.mockitokotlin2.mock
 import dagger.Module
 import dagger.Provides
+import javax.inject.Singleton
 
 @Module
 object TestCacheModule {
 
-    @Provides
-    @JvmStatic
+    @Provides @JvmStatic @Singleton
     fun providesDatabase(application: Application): ProjectsDatabase {
         return ProjectsDatabase.getInstance(application)
     }
 
-    @Provides
-    @JvmStatic
+    @Provides @JvmStatic @Singleton
     fun provideProjectsCache(): ProjectsCache = mock()
 }

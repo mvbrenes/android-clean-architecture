@@ -68,10 +68,13 @@ dependencies {
 
     androidTestImplementation mobileUITestDependencies.junit
     androidTestImplementation mobileUITestDependencies.assertJ
-    androidTestImplementation mobileUITestDependencies.mockitoKotlin
+    androidTestImplementation(mobileUITestDependencies.mockitoKotlin)
     androidTestImplementation mobileUITestDependencies.testRunner
     androidTestImplementation mobileUITestDependencies.testRules
     androidTestImplementation mobileUITestDependencies.testCore
+    androidTestImplementation mobileUITestDependencies.testExtJunit
+    androidTestImplementation mobileUITestDependencies.rxIdler
+    androidTestImplementation mobileUITestDependencies.mockitoAndroid
     androidTestImplementation mobileUITestDependencies.dagger
     androidTestImplementation(mobileUITestDependencies.daggerAndroid) {
         exclude group: 'com.android.support'
@@ -87,4 +90,8 @@ dependencies {
     }
     kaptAndroidTest mobileUITestDependencies.daggerCompiler
     kaptAndroidTest mobileUITestDependencies.daggerAndroidProcessor
+}
+
+configurations.all {
+    resolutionStrategy.force "org.mockito:mockito-core:2.22.0"
 }

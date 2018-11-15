@@ -20,6 +20,8 @@ import javax.inject.Singleton
     TestRemoteModule::class])
 interface TestApplicationComponent {
 
+    fun projectsRepository(): ProjectsRepository
+
     @Component.Builder
     interface Builder {
         @BindsInstance
