@@ -6,7 +6,7 @@ ext {
     buildToolsVersion = '28.0.3'
 
     // Libraries
-    kotlinVersion = '1.3.0'
+    kotlinVersion = '1.3.10'
     androidXVersion = '1.0.0'
     rxJavaVersion = '2.2.3'
     rxAndroidVersion = '2.1.0'
@@ -172,17 +172,20 @@ ext {
     ]
 
     mobileUITestDependencies = [
-            dagger         : "com.google.dagger:dagger:$daggerVersion",
-            junit          : "junit:junit:$jUnitVersion",
-            assertJ        : "org.assertj:assertj-core:$assertJVersion",
-            kotlinJUnit    : "org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion",
-            mockitoKotlin  : "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockitoKotlinVersion",
-            testRunner     : "androidx.test:runner:$axTestRunner",
-            testRules      : "androidx.test:rules:$axTestRules",
-            testCore     : "androidx.test:core:$axTestCore",
-            mockitoAndroid : "org.mockito:mockito-android:$mockitoAndroidVersion",
-            espressoCore   : "androidx.test.espresso:espresso-core:$espressoVersion",
-            espressoIntents: "androidx.test.espresso:espresso-intents:$espressoVersion",
-            espressoContrib: "androidx.test.espresso:espresso-contrib:$espressoVersion"
+            dagger                : "com.google.dagger:dagger:$daggerVersion",
+            daggerCompiler        : "com.google.dagger:dagger-compiler:$daggerVersion",
+            daggerAndroid         : "com.google.dagger:dagger-android-support:$daggerVersion",
+            daggerAndroidProcessor: "com.google.dagger:dagger-android-processor:$daggerVersion",
+            junit                 : "junit:junit:$jUnitVersion",
+            assertJ               : "org.assertj:assertj-core:$assertJVersion",
+            kotlinJUnit           : "org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion",
+            mockitoKotlin         : "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockitoKotlinVersion",
+            testRunner            : "androidx.test:runner:$axTestRunner",
+            testRules             : "androidx.test:rules:$axTestRules",
+            testCore              : "androidx.test:core:$axTestCore",
+            mockitoAndroid        : "org.mockito:mockito-android:$mockitoAndroidVersion",
+            espressoCore          : "androidx.test.espresso:espresso-core:$espressoVersion",
+            espressoIntents       : "androidx.test.espresso:espresso-intents:$espressoVersion",
+            espressoContrib       : "androidx.test.espresso:espresso-contrib:$espressoVersion"
     ]
 }

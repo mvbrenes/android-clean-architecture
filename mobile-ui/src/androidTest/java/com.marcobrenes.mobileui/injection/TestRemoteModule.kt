@@ -11,14 +11,10 @@ object TestRemoteModule {
 
     @Provides
     @JvmStatic
-    fun provideGithubService(): GithubTrendingService {
-        return mock()
-    }
+    fun provideGithubService(): GithubTrendingService = mock()
 
     @Provides
     @JvmStatic
-    fun providesProjectsRemote(): ProjectsRemote {
-        return mock()
-    }
+    fun providesProjectsRemote(): ProjectsRemote = mock()
 
 }

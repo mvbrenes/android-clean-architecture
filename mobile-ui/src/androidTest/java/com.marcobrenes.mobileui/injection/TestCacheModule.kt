@@ -18,7 +18,5 @@ object TestCacheModule {
 
     @Provides
     @JvmStatic
-    fun provideProjectsCache(): ProjectsCache {
-        return mock()
-    }
+    fun provideProjectsCache(): ProjectsCache = mock()
 }

@@ -12,7 +12,7 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.marcobrenes.mobileui.test.TestRunner"
 
     }
     buildTypes {
@@ -72,8 +72,10 @@ dependencies {
     androidTestImplementation mobileUITestDependencies.testRunner
     androidTestImplementation mobileUITestDependencies.testRules
     androidTestImplementation mobileUITestDependencies.testCore
-    androidTestImplementation mobileUITestDependencies.mockitoAndroid
     androidTestImplementation mobileUITestDependencies.dagger
+    androidTestImplementation(mobileUITestDependencies.daggerAndroid) {
+        exclude group: 'com.android.support'
+    }
     androidTestImplementation(mobileUITestDependencies.espressoCore) {
         exclude group: 'androidx.annotation', module: 'annotation'
     }
@@ -83,7 +85,6 @@ dependencies {
     androidTestImplementation(mobileUITestDependencies.espressoContrib) {
         exclude group: 'com.android.support'
     }
-    kaptTest mobileUIDependencies.daggerCompiler
-    kaptAndroidTest mobileUIDependencies.daggerCompiler
-    kaptAndroidTest mobileUIDependencies.daggerAndroidProcessor
+    kaptAndroidTest mobileUITestDependencies.daggerCompiler
+    kaptAndroidTest mobileUITestDependencies.daggerAndroidProcessor
 }

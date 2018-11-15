@@ -9,7 +9,5 @@ import dagger.Provides
 object TestDataModule {
     @Provides
     @JvmStatic
-    fun provideDataRepository(): ProjectsRepository {
-        return mock()
-    }
+    fun provideDataRepository(): ProjectsRepository = mock()
 }
