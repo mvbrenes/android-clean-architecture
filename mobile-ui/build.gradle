@@ -91,7 +91,3 @@ dependencies {
     kaptAndroidTest mobileUITestDependencies.daggerCompiler
     kaptAndroidTest mobileUITestDependencies.daggerAndroidProcessor
 }
-
-configurations.all {
-    resolutionStrategy.force "org.mockito:mockito-core:2.22.0"
-}

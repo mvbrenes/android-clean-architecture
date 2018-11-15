@@ -71,6 +71,10 @@ allprojects {
             }
         }
     }
+    
+    configurations.all {
+        resolutionStrategy.force "org.mockito:mockito-core:2.22.0"
+    }
 }
 
 task clean(type: Delete) {
