@@ -3,9 +3,9 @@ package com.marcobrenes.mobileui.test.factory
 import com.marcobrenes.githubtrending.domain.model.Project
 import com.marcobrenes.githubtrending.presentation.model.ProjectView
 
-object TestProjectFactory {
+object ProjectFactory {
 
-    fun makeProjectView(): ProjectView = with(TestDataFactory) {
+    fun makeProjectView(): ProjectView = with(DataFactory) {
         ProjectView(
                 randomString(),
                 randomString(),
@@ -18,7 +18,7 @@ object TestProjectFactory {
         )
     }
 
-    fun makeProject() = with(TestDataFactory) {
+    fun makeProject() = with(DataFactory) {
         Project(
                 randomString(),
                 randomString(),

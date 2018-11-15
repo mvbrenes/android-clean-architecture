@@ -3,80 +3,81 @@ import com.android.build.gradle.LibraryExtension
 import com.android.build.gradle.LibraryPlugin
 
 buildscript {
-    apply from: 'dependencies.gradle'
-    repositories {
-        google()
-        jcenter()
-    }
-    dependencies {
-        //noinspection GradleDependency
-        classpath 'com.android.tools.build:gradle:3.2.1'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
-        classpath 'com.android.tools.build.jetifier:jetifier-processor:1.0.0-beta02'
+  apply from: 'dependencies.gradle'
+  repositories {
+    google()
+    jcenter()
+  }
+  dependencies {
+    //noinspection GradleDependency
+    classpath 'com.android.tools.build:gradle:3.2.1'
+    classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+    classpath 'com.android.tools.build.jetifier:jetifier-processor:1.0.0-beta02'
 
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
-    }
+    // NOTE: Do not place your application dependencies here; they belong
+    // in the individual module build.gradle files
+  }
 }
 
 apply from: 'dependencies.gradle'
 
 allprojects {
-    repositories {
-        google()
-        jcenter()
+  repositories {
+    google()
+    jcenter()
 
-        /*glide snapshot repo*/
-        maven {
-            name 'glide-snapshot'
-            url 'http://oss.sonatype.org/content/repositories/snapshots'
-        }
+    /*glide snapshot repo*/
+    maven {
+      name 'glide-snapshot'
+      url 'http://oss.sonatype.org/content/repositories/snapshots'
     }
+  }
 
-    tasks.withType(JavaCompile).all {
-        options.compilerArgs += [
-                '-Adagger.formatGeneratedSource=disabled',
-                '-Adagger.gradle.incremental'
-        ]
+  tasks.withType(JavaCompile).all {
+    options.compilerArgs += [
+        '-Adagger.formatGeneratedSource=disabled',
+        '-Adagger.gradle.incremental'
+    ]
+  }
+  afterEvaluate {
+    def kapt = extensions.findByName('kapt')
+    if (kapt != null) {
+      kapt.arguments {
+        arg("dagger.formatGeneratedSource", "disabled")
+      }
     }
-    afterEvaluate {
-        def kapt = extensions.findByName('kapt')
-        if (kapt != null) {
-            kapt.arguments {
-                arg("dagger.formatGeneratedSource", "disabled")
-            }
-        }
-    }
+  }
 
-    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
-        kotlinOptions {
-            jvmTarget = "1.8"
-            freeCompilerArgs += [
-                    '-progressive'
-            ]
-        }
+  tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+    kotlinOptions {
+      jvmTarget = "1.8"
+      freeCompilerArgs += [
+          '-progressive'
+      ]
     }
+  }
 
-    tasks.withType(Test) {
-        testLogging {
-            events "skipped", "failed", "passed"
-        }
+  tasks.withType(Test) {
+    testLogging {
+      events "skipped", "failed", "passed"
     }
+  }
 
-    // Disable BuildConfig generation for Android library modules so javac can be skipped altogether.
-    plugins.whenPluginAdded {
-        if (it instanceof LibraryPlugin) {
-            extensions.getByType(LibraryExtension).libraryVariants.all {
-                it.generateBuildConfig.enabled = false
-            }
-        }
+  // Disable BuildConfig generation for Android library modules so javac can be skipped altogether.
+  plugins.whenPluginAdded {
+    if (it instanceof LibraryPlugin) {
+      extensions.getByType(LibraryExtension).libraryVariants.all {
+        it.generateBuildConfig.enabled = false
+      }
     }
-    
-    configurations.all {
-        resolutionStrategy.force "org.mockito:mockito-core:2.22.0"
-    }
+  }
+
+  configurations.all {
+    resolutionStrategy.force "org.mockito:mockito-core:2.22.0"
+    resolutionStrategy.force "androidx.annotation:annotation:$androidXVersion"
+  }
 }
 
 task clean(type: Delete) {
-    delete rootProject.buildDir
+  delete rootProject.buildDir
 }

@@ -1,4 +1,4 @@
-package com.marcobrenes.mobileui.test
+package com.marcobrenes.mobileui
 
 import android.app.Activity
 import android.app.Application
