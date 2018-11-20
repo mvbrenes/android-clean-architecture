@@ -59,8 +59,7 @@ allprojects {
 
     tasks.withType(Test) {
         testLogging {
-            exceptionFormat "full"
-            events "started", "skipped", "passed", "failed"
+            exceptionFormat "full" events "started", "skipped", "passed", "failed"
             showStandardStreams true
         }
     }
@@ -72,6 +71,11 @@ allprojects {
                 it.generateBuildConfig.enabled = false
             }
         }
+    }
+
+    configurations.all {
+        resolutionStrategy.force "org.mockito:mockito-core:2.22.0"
+        resolutionStrategy.force "androidx.annotation:annotation:$androidXVersion"
     }
 }
 

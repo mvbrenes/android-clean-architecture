@@ -3,6 +3,7 @@ package com.marcobrenes.mobileui.test
 import android.app.Application
 import android.content.Context
 import androidx.test.runner.AndroidJUnitRunner
+import com.marcobrenes.mobileui.TestApplication
 import com.squareup.rx2.idler.Rx2Idler
 import io.reactivex.plugins.RxJavaPlugins
 

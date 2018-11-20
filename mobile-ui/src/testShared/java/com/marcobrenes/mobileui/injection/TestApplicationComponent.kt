@@ -2,8 +2,8 @@ package com.marcobrenes.mobileui.injection
 
 import android.app.Application
 import com.marcobrenes.githubtrending.domain.repository.ProjectsRepository
+import com.marcobrenes.mobileui.TestApplication
 import com.marcobrenes.mobileui.injection.module.*
-import com.marcobrenes.mobileui.test.TestApplication
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.support.AndroidSupportInjectionModule
