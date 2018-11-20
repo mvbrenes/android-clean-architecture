@@ -59,7 +59,9 @@ allprojects {
 
     tasks.withType(Test) {
         testLogging {
-            events "skipped", "failed", "passed"
+            exceptionFormat "full"
+            events "started", "skipped", "passed", "failed"
+            showStandardStreams true
         }
     }
 
