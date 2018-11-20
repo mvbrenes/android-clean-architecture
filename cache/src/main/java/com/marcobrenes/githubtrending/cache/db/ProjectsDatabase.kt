@@ -22,7 +22,7 @@ abstract class ProjectsDatabase : RoomDatabase() {
 
     abstract fun configDao(): ConfigDao
 
-    companion object : SingletonHolder<ProjectsDatabase, Context>({
+    companion object : SingletonHolder<Context, ProjectsDatabase>({
         Room.databaseBuilder(
                 it.applicationContext,
                 ProjectsDatabase::class.java,

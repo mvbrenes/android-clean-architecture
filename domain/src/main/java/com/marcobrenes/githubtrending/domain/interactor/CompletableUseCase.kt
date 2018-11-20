@@ -21,7 +21,7 @@ abstract class CompletableUseCase<in Params> constructor(
         addDisposable(completable.subscribeWith(observer))
     }
 
-    fun addDisposable(disposable: Disposable) {
+    private fun addDisposable(disposable: Disposable) {
         disposables.add(disposable)
     }
 

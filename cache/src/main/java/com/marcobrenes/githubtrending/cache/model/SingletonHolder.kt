@@ -1,6 +1,6 @@
 package com.marcobrenes.githubtrending.cache.model
 
-open class SingletonHolder<out T, in A>(creator: (A) -> T) {
+open class SingletonHolder<in A, out T>(creator: (A) -> T) {
 
     private var creator: ((A) -> T)? = creator
     @Volatile private var instance: T? = null

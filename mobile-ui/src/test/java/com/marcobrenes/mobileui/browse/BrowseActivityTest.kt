@@ -21,7 +21,7 @@ import org.junit.runner.RunWith
 import org.robolectric.annotation.Config
 
 @RunWith(AndroidJUnit4::class)
-@Config(application = TestApplication::class)
+@Config(application = TestApplication::class, sdk = [28])
 class BrowseActivityTest {
 
     @get:Rule val activity = ActivityTestRule(

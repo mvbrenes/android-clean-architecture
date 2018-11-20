@@ -10,8 +10,6 @@ import com.nhaarman.mockitokotlin2.whenever
 import io.reactivex.Completable
 import org.junit.Before
 import org.junit.Test
-import org.mockito.Mock
-import org.mockito.MockitoAnnotations
 
 class BookmarkProjectTest {
 
@@ -20,7 +18,6 @@ class BookmarkProjectTest {
     private val postExecutionThread: PostExecutionThread = mock()
 
     @Before fun setup() {
-        MockitoAnnotations.initMocks(this)
         bookmarkProject = BookmarkProject(projectsRepository, postExecutionThread)
     }
 

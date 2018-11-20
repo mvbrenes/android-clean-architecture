@@ -23,16 +23,16 @@ import kotlin.test.assertEquals
 @RunWith(JUnit4::class)
 class BrowseProjectsViewModelTest {
 
-    @get:Rule var instantTaskExecutorRule = InstantTaskExecutorRule()
-    var getProjects = mock<GetProjects>()
-    var bookmarkProject = mock<BookmarkProject>()
-    var unbookmarkProject = mock<UnbookmarkProject>()
-    var projectMapper = mock<ProjectViewMapper>()
-    var projectViewModel = BrowseProjectsViewModel(getProjects,
+    @get:Rule val instantTaskExecutorRule = InstantTaskExecutorRule()
+    private var getProjects: GetProjects = mock()
+    private var bookmarkProject: BookmarkProject = mock()
+    private var unbookmarkProject: UnbookmarkProject = mock()
+    private var projectMapper: ProjectViewMapper = mock()
+
+    private var projectViewModel = BrowseProjectsViewModel(getProjects,
             bookmarkProject, unbookmarkProject, projectMapper)
 
-    @Captor
-    private val captor = argumentCaptor<DisposableObserver<List<Project>>>()
+    @Captor private val captor = argumentCaptor<DisposableObserver<List<Project>>>()
 
     @Test fun fetchProjectsExecutesUseCase() {
         projectViewModel.fetchProjects()
