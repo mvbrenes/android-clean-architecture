@@ -7,10 +7,10 @@ import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import androidx.test.rule.ActivityTestRule
 import com.marcobrenes.githubtrending.domain.model.Project
 import com.marcobrenes.mobileui.R
 import com.marcobrenes.mobileui.TestApplication
+import com.marcobrenes.mobileui.ext.ActivityTestRule
 import com.marcobrenes.mobileui.test.factory.ProjectFactory
 import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.whenever
@@ -24,11 +24,7 @@ import org.robolectric.annotation.Config
 @Config(application = TestApplication::class, sdk = [28])
 class BrowseActivityTest {
 
-    @get:Rule val activity = ActivityTestRule(
-            BrowseActivity::class.java,
-            false,
-            false
-    )
+    @get:Rule val activity = ActivityTestRule<BrowseActivity>(launchActivity = false)
 
     @Test fun activityLaunches() {
         stubProjectsRepositoryGetProjects(
