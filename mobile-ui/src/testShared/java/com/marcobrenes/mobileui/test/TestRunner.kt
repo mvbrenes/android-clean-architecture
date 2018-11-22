@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package com.marcobrenes.mobileui.test
 
 import android.app.Application

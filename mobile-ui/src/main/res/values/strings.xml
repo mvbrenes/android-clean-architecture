@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Github Trending</string>
-    <string name="title_activity_main">MainActivity</string>
     <string name="bookmarked_projects">Bookmarked projects</string>
     <string name="title_bookmarked">Bookmarked</string>
+    <string name="bookmarked">bookmarked</string>
+    <string name="avatar">avatar</string>
 </resources>

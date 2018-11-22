@@ -24,7 +24,7 @@ class UnbookmarkProjectTest {
     @Test fun unbookmarkProjectCompletes() {
         stubUnbookmarkProject(Completable.complete())
         val testObserver = unbookmarkProject.buildUseCaseCompletable(
-                UnbookmarkProject.Params.forProject(ProjectDataFactory.randomUuid()))
+                UnbookmarkProject.Params.forProject(ProjectDataFactory.randomString()))
                 .test()
         testObserver.assertComplete()
     }

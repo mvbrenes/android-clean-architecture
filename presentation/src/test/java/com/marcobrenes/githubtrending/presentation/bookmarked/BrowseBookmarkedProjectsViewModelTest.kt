@@ -15,18 +15,16 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-import org.mockito.Captor
 import kotlin.test.assertEquals
 
 @RunWith(JUnit4::class)
 class BrowseBookmarkedProjectsViewModelTest {
 
-    @get:Rule var instantTaskExecutorRule = InstantTaskExecutorRule()
-    var getBookmarkedProjects = mock<GetBookmarkedProjects>()
-    var mapper = mock<ProjectViewMapper>()
-    var projectViewModel = BrowseBookmarkedProjectsViewModel(getBookmarkedProjects, mapper)
-
-    @Captor val captor = argumentCaptor<DisposableObserver<List<Project>>>()
+    @get:Rule val instantTaskExecutorRule = InstantTaskExecutorRule()
+    private val getBookmarkedProjects: GetBookmarkedProjects = mock()
+    private val mapper: ProjectViewMapper = mock()
+    private val projectViewModel = BrowseBookmarkedProjectsViewModel(getBookmarkedProjects, mapper)
+    private val captor = argumentCaptor<DisposableObserver<List<Project>>>()
 
     @Test fun fetchProjectsExecutesUseCase() {
         projectViewModel.fetchProjects()
@@ -67,7 +65,7 @@ class BrowseBookmarkedProjectsViewModelTest {
         projectViewModel.fetchProjects()
         verify(getBookmarkedProjects).execute(captor.capture(), eq(null))
         captor.firstValue.onError(RuntimeException(errorMessage))
-        assertEquals(errorMessage,  projectViewModel.getProjects().value?.message)
+        assertEquals(errorMessage, projectViewModel.getProjects().value?.message)
     }
 
     private fun stubProjectMapperMapToView(project: Project, projectView: ProjectView) {

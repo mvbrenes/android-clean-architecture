@@ -5,7 +5,7 @@ import com.marcobrenes.githubtrending.presentation.model.ProjectView
 
 object ProjectFactory {
 
-    fun makeProjectView(): ProjectView {
+    private fun makeProjectView(): ProjectView {
         return with(DataFactory) {
             ProjectView(
                     randomString(),

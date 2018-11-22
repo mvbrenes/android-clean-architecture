@@ -1,3 +1,5 @@
+@file:Suppress("MemberVisibilityCanBePrivate")
+
 package com.marcobrenes.githubtrending.domain.test
 
 import com.marcobrenes.githubtrending.domain.model.Project
@@ -5,17 +7,17 @@ import java.util.*
 
 internal object ProjectDataFactory {
 
-    fun randomUuid() = UUID.randomUUID().toString()
+    fun randomString() = UUID.randomUUID().toString()
     fun randomBoolean() = Math.random() < 0.5
 
     fun makeProject() = Project(
-            randomUuid(),
-            randomUuid(),
-            randomUuid(),
-            randomUuid(),
-            randomUuid(),
-            randomUuid(),
-            randomUuid(),
+            randomString(),
+            randomString(),
+            randomString(),
+            randomString(),
+            randomString(),
+            randomString(),
+            randomString(),
             randomBoolean()
     )
 

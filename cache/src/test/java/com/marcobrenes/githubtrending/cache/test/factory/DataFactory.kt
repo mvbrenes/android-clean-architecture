@@ -15,15 +15,4 @@ object DataFactory {
 
     fun randomLong(): Long = randomInt().toLong()
 
-    fun randomBoolean(): Boolean {
-        return Math.random() < 0.5
-    }
-
-    fun makeStringList(count: Int): List<String> {
-        val items = mutableListOf<String>()
-        repeat(count) {
-            items.add(randomString())
-        }
-        return items
-    }
 }

@@ -1,16 +1,16 @@
-package com.marcobrenes.githubtrending.data.store
+package com.marcobrenes.githubtrending.data.source
 
 import com.marcobrenes.githubtrending.data.model.ProjectEntity
 import com.marcobrenes.githubtrending.data.repository.ProjectsCache
-import com.marcobrenes.githubtrending.data.repository.ProjectsDataStore
+import com.marcobrenes.githubtrending.data.repository.ProjectsDataSource
 import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.Observable
 import javax.inject.Inject
 
-class ProjectsCacheDataStore @Inject constructor(
+class ProjectsCacheDataSource @Inject constructor(
         private val projectsCache: ProjectsCache
-) : ProjectsDataStore {
+) : ProjectsDataSource {
 
     override fun getProjects(): Flowable<List<ProjectEntity>> {
         return projectsCache.getProjects()

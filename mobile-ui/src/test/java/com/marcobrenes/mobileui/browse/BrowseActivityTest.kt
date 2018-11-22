@@ -28,10 +28,11 @@ class BrowseActivityTest {
 
     @Test fun activityLaunches() {
         stubProjectsRepositoryGetProjects(
-                Observable.just(
-                        listOf(ProjectFactory.makeProject()
-                        )
+            Observable.just(
+                listOf(
+                    ProjectFactory.makeProject()
                 )
+            )
         )
         activity.launchActivity(null)
     }
@@ -43,10 +44,10 @@ class BrowseActivityTest {
 
         projects.forEachIndexed { index, project ->
             onView(withId(R.id.recycler_view))
-                    .perform(RecyclerViewActions.scrollToPosition<BrowseAdapter.ViewHolder>(index))
+                .perform(RecyclerViewActions.scrollToPosition<BrowseAdapter.ViewHolder>(index))
 
             onView(ViewMatchers.withId(R.id.recycler_view))
-                    .check(matches(ViewMatchers.hasDescendant(withText(project.fullName))))
+                .check(matches(ViewMatchers.hasDescendant(withText(project.fullName))))
         }
     }
 

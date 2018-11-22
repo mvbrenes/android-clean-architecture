@@ -7,7 +7,7 @@ import com.marcobrenes.githubtrending.remote.model.ProjectsResponseModel
 
 object ProjectDataFactory {
 
-    fun makeOwner(): OwnerModel {
+    private fun makeOwner(): OwnerModel {
         return with(DataFactory) {
             OwnerModel(randomString(), randomString())
         }
