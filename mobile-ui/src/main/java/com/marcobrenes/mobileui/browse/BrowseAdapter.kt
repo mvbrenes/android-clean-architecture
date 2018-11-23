@@ -25,7 +25,7 @@ class BrowseAdapter @Inject constructor() : RecyclerView.Adapter<BrowseAdapter.V
     }
 
     override fun getItemCount(): Int {
-        return projects.count()
+        return projects.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -34,9 +34,9 @@ class BrowseAdapter @Inject constructor() : RecyclerView.Adapter<BrowseAdapter.V
         holder.projectNameText.text = project.fullName
 
         Glide.with(holder.itemView.context)
-                .load(project.ownerAvatar)
-                .apply(RequestOptions.circleCropTransform())
-                .into(holder.avatarImage)
+            .load(project.ownerAvatar)
+            .apply(RequestOptions.circleCropTransform())
+            .into(holder.avatarImage)
 
         val starResource = if (project.isBookmarked) {
             R.drawable.ic_star_black_24dp
@@ -64,7 +64,7 @@ class BrowseAdapter @Inject constructor() : RecyclerView.Adapter<BrowseAdapter.V
         }
     }
 
-    inner class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
+    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var avatarImage: ImageView = view.findViewById(R.id.image_owner_avatar)
         var ownerNameText: TextView = view.findViewById(R.id.text_owner_name)
         var projectNameText: TextView = view.findViewById(R.id.text_project_name)

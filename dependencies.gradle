@@ -16,7 +16,7 @@ ext {
 
   daggerVersion = '2.19'
   gsonVersion = '2.8.5'
-  okhttpVersion = '3.11.0'
+  okhttpVersion = '3.12.0'
   retrofitVersion = '2.4.0'
 
   timberVersion = '4.7.1'

@@ -7,33 +7,33 @@ object ProjectFactory {
 
     fun makeProjectView(): ProjectView = with(DataFactory) {
         ProjectView(
-                randomString(),
-                randomString(),
-                randomString(),
-                randomString(),
-                randomString(),
-                randomString(),
-                randomString(),
-                randomBoolean()
+            randomString(),
+            randomString(),
+            randomString(),
+            randomString(),
+            randomString(),
+            randomString(),
+            randomString(),
+            randomBoolean()
         )
     }
 
     fun makeProject() = with(DataFactory) {
         Project(
-                randomString(),
-                randomString(),
-                randomString(),
-                randomString(),
-                randomString(),
-                randomString(),
-                randomString(),
-                randomBoolean()
+            randomString(),
+            randomString(),
+            randomString(),
+            randomString(),
+            randomString(),
+            randomString(),
+            randomString(),
+            randomBoolean()
         )
     }
 
     fun makeProjectList(count: Int): List<Project> {
-        val projects = mutableListOf<Project>()
-        repeat(count) { projects.add(makeProject()) }
-        return projects
+        return  mutableListOf<Project>().apply {
+            repeat(count) { add(makeProject()) }
+        }
     }
 }
