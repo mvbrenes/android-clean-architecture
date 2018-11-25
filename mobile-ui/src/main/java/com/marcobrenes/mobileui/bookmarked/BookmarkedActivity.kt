@@ -4,11 +4,13 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
+import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.marcobrenes.githubtrending.presentation.BrowseBookmarkedProjectsViewModel
 import com.marcobrenes.githubtrending.presentation.model.ProjectView
 import com.marcobrenes.githubtrending.presentation.state.Resource
@@ -20,7 +22,6 @@ import com.marcobrenes.mobileui.injection.ViewModelFactory
 import com.marcobrenes.mobileui.mapper.ProjectViewMapper
 import com.marcobrenes.mobileui.model.Project
 import dagger.android.AndroidInjection
-import kotlinx.android.synthetic.main.activity_bookmarked.*
 import javax.inject.Inject
 
 
@@ -29,7 +30,10 @@ class BookmarkedActivity : AppCompatActivity() {
     @Inject lateinit var adapter: BookmarkedAdapter
     @Inject lateinit var mapper: ProjectViewMapper
     @Inject lateinit var viewModelFactory: ViewModelFactory
-    @Inject lateinit var browseViewModel: BrowseBookmarkedProjectsViewModel
+    
+    private lateinit var viewModel: BrowseBookmarkedProjectsViewModel
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var progress: ProgressBar
 
     companion object {
         fun getStartIntent(context: Context): Intent {
@@ -41,9 +45,15 @@ class BookmarkedActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bookmarked)
         AndroidInjection.inject(this)
-        browseViewModel = ViewModelProviders.of(this, viewModelFactory).get()
+
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        setupBrowseRecyler()
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get()
+        recyclerView = findViewById(R.id.recycler_view)
+        progress = findViewById(R.id.progress)
+
+        setupBrowseRecycler()
+        viewModel.getProjects().observe(this, dataStateObserver)
+        viewModel.fetchProjects()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -51,37 +61,31 @@ class BookmarkedActivity : AppCompatActivity() {
             android.R.id.home -> {
                 finish()
                 true
-            } else -> super.onOptionsItemSelected(item)
+            }
+            else -> super.onOptionsItemSelected(item)
         }
     }
 
-    override fun onStart() {
-        super.onStart()
-        browseViewModel.getProjects().observe(this, Observer {
-            handleDataState(it)
-        })
-        browseViewModel.fetchProjects()
+    private fun setupBrowseRecycler() {
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.adapter = adapter
     }
 
-    private fun setupBrowseRecyler() {
-        recycler_view.layoutManager = LinearLayoutManager(this)
-        recycler_view.adapter = adapter
-    }
-
-    private fun handleDataState(resource: Resource<List<ProjectView>>) {
-        when(resource.status) {
+    private val dataStateObserver = Observer<Resource<List<ProjectView>>> { resource ->
+        when (resource.status) {
             ResourceState.SUCCESS -> {
                 setupScreenForSuccess(resource.data?.map { mapper.mapToView(it) })
                 progress.isVisible = false
-                recycler_view.isVisible = true
+                recyclerView.isVisible = true
             }
 
             ResourceState.LOADING -> {
                 progress.isVisible = true
-                recycler_view.isVisible = false
+                recyclerView.isVisible = false
             }
 
-            ResourceState.ERROR -> {}
+            ResourceState.ERROR -> {
+            }
         }
     }
 
@@ -89,8 +93,6 @@ class BookmarkedActivity : AppCompatActivity() {
         projects?.let {
             adapter.projects = it
             adapter.notifyDataSetChanged()
-        } ?: run {
-
         }
     }
 }

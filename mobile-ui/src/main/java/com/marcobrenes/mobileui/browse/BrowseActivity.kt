@@ -4,11 +4,13 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.marcobrenes.githubtrending.presentation.BrowseProjectsViewModel
 import com.marcobrenes.githubtrending.presentation.model.ProjectView
@@ -21,31 +23,30 @@ import com.marcobrenes.mobileui.injection.ViewModelFactory
 import com.marcobrenes.mobileui.mapper.ProjectViewMapper
 import com.marcobrenes.mobileui.model.Project
 import dagger.android.AndroidInjection
-import kotlinx.android.synthetic.main.activity_browse.*
 import timber.log.Timber
 import javax.inject.Inject
 
 class BrowseActivity : AppCompatActivity() {
 
-    @Inject lateinit var browseAdapter: BrowseAdapter
     @Inject lateinit var mapper: ProjectViewMapper
     @Inject lateinit var viewModelFactory: ViewModelFactory
-    @Inject lateinit var browseViewModel: BrowseProjectsViewModel
+
+    private lateinit var viewModel: BrowseProjectsViewModel
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var progress: ProgressBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_browse)
         AndroidInjection.inject(this)
-        browseViewModel = ViewModelProviders.of(this, viewModelFactory).get()
-        setupBrowseRecycler()
-    }
 
-    override fun onStart() {
-        super.onStart()
-        browseViewModel.getProjects().observe(this, Observer {
-            handleDataState(it)
-        })
-        browseViewModel.fetchProjects()
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get()
+        recyclerView = findViewById(R.id.recycler_view)
+        progress = findViewById(R.id.progress)
+
+        setupBrowseRecycler()
+        viewModel.getProjects().observe(this, dataStateObserver)
+        viewModel.fetchProjects()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -63,49 +64,50 @@ class BrowseActivity : AppCompatActivity() {
         }
     }
 
-    private fun handleDataState(resource: Resource<List<ProjectView>>) {
+    private fun setupScreenForSuccess(projects: List<Project>?) {
+        progress.isVisible = false
+        projects?.let {
+            (recyclerView.adapter as? BrowseAdapter)?.apply {
+                this.projects = it
+                notifyDataSetChanged()
+            }
+            recyclerView.isVisible = true
+        }
+    }
+
+    private fun setupBrowseRecycler() {
+        recyclerView.apply {
+            layoutManager = LinearLayoutManager(applicationContext)
+            adapter = BrowseAdapter().apply { this.projectListener = listener }
+        }
+    }
+
+    private val dataStateObserver = Observer<Resource<List<ProjectView>>> { resource ->
         when (resource.status) {
             ResourceState.SUCCESS -> {
                 setupScreenForSuccess(resource.data?.map { mapper.mapToView(it) })
             }
             ResourceState.LOADING -> {
                 progress.isVisible = true
-                recycler_view.isVisible = false
+                recyclerView.isVisible = false
             }
-
             ResourceState.ERROR -> {
                 resource.message?.let { Timber.e(it) }
                 progress.isVisible = false
-                val view: View? = findViewById(android.R.id.content)
-                view?.let { Snackbar.make(it, resource.message ?: "", Snackbar.LENGTH_INDEFINITE).show() }
+                findViewById<View?>(android.R.id.content)?.let {
+                    Snackbar.make(it, resource.message ?: "", Snackbar.LENGTH_INDEFINITE).show()
+                }
             }
         }
     }
 
-    private fun setupScreenForSuccess(projects: List<Project>?) {
-        progress.isVisible = false
-        projects?.let {
-            browseAdapter.projects = it
-            browseAdapter.notifyDataSetChanged()
-            recycler_view.isVisible = true
-        } ?: run {
-
-        }
-    }
-
-    private fun setupBrowseRecycler() {
-        browseAdapter.projectListener = projectListener
-        recycler_view.layoutManager = LinearLayoutManager(this)
-        recycler_view.adapter = browseAdapter
-    }
-
-    private val projectListener = object : ProjectListener {
+    private val listener = object : ProjectListener {
         override fun onBookmarkedProjectClicked(projectId: String) {
-            browseViewModel.unBookmarkProject(projectId)
+            viewModel.unBookmarkProject(projectId)
         }
 
         override fun onProjectClicked(projectId: String) {
-            browseViewModel.bookmarkProject(projectId)
+            viewModel.bookmarkProject(projectId)
         }
     }
 }

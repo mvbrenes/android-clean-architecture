@@ -1,4 +1,4 @@
-package com.marcobrenes.githubtrending.data.store
+package com.marcobrenes.githubtrending.data.source
 
 import com.marcobrenes.githubtrending.data.model.ProjectEntity
 import com.marcobrenes.githubtrending.data.repository.ProjectsRemote
@@ -8,17 +8,16 @@ import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
 import io.reactivex.Flowable
-import io.reactivex.Observable
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 
 
 @RunWith(JUnit4::class)
-class ProjectsRemoteDataStoreTest {
+class ProjectsRemoteDataSourceTest {
 
     private val remote = mock<ProjectsRemote>()
-    private val store = ProjectsRemoteDataStore(remote)
+    private val store = ProjectsRemoteDataSource(remote)
 
     @Test fun getProjectsCompletes() {
         stubRemoteGetProjects(Flowable.just(listOf(ProjectFactory.makeProjectEntity())))

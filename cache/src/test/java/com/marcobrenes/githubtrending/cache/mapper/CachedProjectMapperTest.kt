@@ -20,7 +20,7 @@ class CachedProjectMapperTest {
         assertEqualsData(model, entity)
     }
 
-    @Test fun maptoCacheMapsData() {
+    @Test fun mapToCacheMapsData() {
         val entity = ProjectDataFactory.makeProjectEntity()
         val model = mapper.mapToCached(entity)
 

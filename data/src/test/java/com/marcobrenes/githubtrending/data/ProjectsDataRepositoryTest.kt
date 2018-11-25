@@ -3,8 +3,8 @@ package com.marcobrenes.githubtrending.data
 import com.marcobrenes.githubtrending.data.mapper.ProjectMapper
 import com.marcobrenes.githubtrending.data.model.ProjectEntity
 import com.marcobrenes.githubtrending.data.repository.ProjectsCache
-import com.marcobrenes.githubtrending.data.repository.ProjectsDataStore
-import com.marcobrenes.githubtrending.data.store.ProjectsDataStoreFactory
+import com.marcobrenes.githubtrending.data.repository.ProjectsDataSource
+import com.marcobrenes.githubtrending.data.source.ProjectsDataSourceFactory
 import com.marcobrenes.githubtrending.data.test.factory.DataFactory
 import com.marcobrenes.githubtrending.data.test.factory.ProjectFactory
 import com.marcobrenes.githubtrending.domain.model.Project
@@ -25,14 +25,14 @@ import org.junit.runners.JUnit4
 class ProjectsDataRepositoryTest {
 
     private val mapper = mock<ProjectMapper>()
-    private val factory = mock<ProjectsDataStoreFactory>()
-    private val store = mock<ProjectsDataStore>()
+    private val factory = mock<ProjectsDataSourceFactory>()
+    private val store = mock<ProjectsDataSource>()
     private val cache = mock<ProjectsCache>()
     private val repository = ProjectsDataRepository(mapper, cache, factory)
 
     @Before fun setup() {
-        stubFactoryGetDataStore()
-        stubFactoryGetCacheDataStore()
+        stubFactoryGetDataSource()
+        stubFactoryGetCacheDataSource()
         stubIsCacheExpired(Single.just(false))
         stubAreProjectsCached(Single.just(false))
         stubSaveProjects(Completable.complete())
@@ -116,12 +116,12 @@ class ProjectsDataRepositoryTest {
         whenever(store.getBookmarkedProjects()) doReturn observable
     }
 
-    private fun stubFactoryGetDataStore() {
-        whenever(factory.getDataStore(any(), any())) doReturn store
+    private fun stubFactoryGetDataSource() {
+        whenever(factory.getDataSource(any(), any())) doReturn store
     }
 
-    private fun stubFactoryGetCacheDataStore() {
-        whenever(factory.getCacheDataStore()) doReturn store
+    private fun stubFactoryGetCacheDataSource() {
+        whenever(factory.getCacheDataSource()) doReturn store
     }
 
     private fun stubSaveProjects(completable: Completable) {

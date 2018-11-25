@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package com.marcobrenes.mobileui.injection.module
 
 import com.marcobrenes.githubtrending.domain.executor.PostExecutionThread

@@ -1,4 +1,4 @@
-package com.marcobrenes.githubtrending.data.store
+package com.marcobrenes.githubtrending.data.source
 
 import com.marcobrenes.githubtrending.data.model.ProjectEntity
 import com.marcobrenes.githubtrending.data.repository.ProjectsCache
@@ -14,10 +14,10 @@ import org.junit.runners.JUnit4
 
 
 @RunWith(JUnit4::class)
-class ProjectsCacheDataStoreTest {
+class ProjectsCacheDataSourceTest {
 
     private val cache = mock<ProjectsCache>()
-    private val store = ProjectsCacheDataStore(cache)
+    private val store = ProjectsCacheDataSource(cache)
 
     @Test fun getProjectsCompletes() {
         stubProjectsCacheGetProjects(Flowable.just(listOf(ProjectFactory.makeProjectEntity())))

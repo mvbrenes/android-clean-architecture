@@ -2,7 +2,7 @@ package com.marcobrenes.githubtrending.data
 
 import com.marcobrenes.githubtrending.data.mapper.ProjectMapper
 import com.marcobrenes.githubtrending.data.repository.ProjectsCache
-import com.marcobrenes.githubtrending.data.store.ProjectsDataStoreFactory
+import com.marcobrenes.githubtrending.data.source.ProjectsDataSourceFactory
 import com.marcobrenes.githubtrending.domain.model.Project
 import com.marcobrenes.githubtrending.domain.repository.ProjectsRepository
 import io.reactivex.Completable
@@ -13,7 +13,7 @@ import javax.inject.Inject
 class ProjectsDataRepository @Inject constructor(
         private val mapper: ProjectMapper,
         private val cache: ProjectsCache,
-        private val factory: ProjectsDataStoreFactory
+        private val factory: ProjectsDataSourceFactory
 ) : ProjectsRepository {
 
     override fun getProjects(): Observable<List<Project>> {
@@ -24,13 +24,13 @@ class ProjectsDataRepository @Inject constructor(
                     Pair(cached, expired)
                 })
                 .flatMap {
-                    factory.getDataStore(it.first, it.second)
+                    factory.getDataSource(it.first, it.second)
                             .getProjects()
                             .toObservable()
                             .distinctUntilChanged()
                 }
                 .flatMap { projects ->
-                    factory.getCacheDataStore()
+                    factory.getCacheDataSource()
                             .saveProjects(projects)
                             .andThen(Observable.just(projects))
                 }
@@ -38,15 +38,15 @@ class ProjectsDataRepository @Inject constructor(
     }
 
     override fun bookmarkProject(projectId: String): Completable {
-        return factory.getCacheDataStore().setProjectAsBookmarked(projectId)
+        return factory.getCacheDataSource().setProjectAsBookmarked(projectId)
     }
 
     override fun unbookmarkProject(projectId: String): Completable {
-        return factory.getCacheDataStore().setProjectAsNotBookmarked(projectId)
+        return factory.getCacheDataSource().setProjectAsNotBookmarked(projectId)
     }
 
     override fun getBookmarkedProjects(): Observable<List<Project>> {
-        return factory.getCacheDataStore().getBookmarkedProjects()
-                .map { it.map { mapper.mapFromEntity(it) } }
+        return factory.getCacheDataSource().getBookmarkedProjects()
+                .map { list -> list.map { mapper.mapFromEntity(it) } }
     }
 }

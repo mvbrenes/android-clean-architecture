@@ -5,7 +5,7 @@ import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.Observable
 
-interface ProjectsDataStore {
+interface ProjectsDataSource {
 
     fun getProjects(): Flowable<List<ProjectEntity>>
 

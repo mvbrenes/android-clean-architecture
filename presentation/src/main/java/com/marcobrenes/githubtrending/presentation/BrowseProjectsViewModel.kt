@@ -70,14 +70,12 @@ class BrowseProjectsViewModel @Inject constructor(
     inner class BookmarkProjectsSubscriber : DisposableCompletableObserver() {
         override fun onComplete() {
             liveData.postValue(Resource(
-                    ResourceState.SUCCESS,
-                    data = liveData.value?.data))
+                    ResourceState.SUCCESS))
         }
 
         override fun onError(e: Throwable) {
             liveData.postValue(Resource(
                     ResourceState.ERROR,
-                    data = liveData.value?.data,
                     message = e.localizedMessage))
         }
     }

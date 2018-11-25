@@ -18,8 +18,6 @@ class ProjectsRemoteImpl @Inject constructor(
 
     override fun getProjects(): Flowable<List<ProjectEntity>> {
         return service.searchRepositories(QUERY, SORT_BY, ORDER)
-                .map {
-                    it.items.map { mapper.mapFromModel(it) }
-                }
+                .map { response -> response.items.map { mapper.mapFromModel(it) } }
     }
 }

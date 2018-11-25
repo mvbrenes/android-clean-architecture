@@ -22,7 +22,7 @@ class BookmarkedAdapter @Inject constructor() : RecyclerView.Adapter<BookmarkedA
     }
 
     override fun getItemCount(): Int {
-        return projects.count()
+        return projects.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -36,7 +36,7 @@ class BookmarkedAdapter @Inject constructor() : RecyclerView.Adapter<BookmarkedA
                 .into(holder.avatarImage)
     }
 
-    inner class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
+    class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
         var avatarImage: ImageView = view.findViewById(R.id.image_owner_avatar)
         var ownerNameText: TextView = view.findViewById(R.id.text_owner_name)
         var projectNameText: TextView = view.findViewById(R.id.text_project_name)

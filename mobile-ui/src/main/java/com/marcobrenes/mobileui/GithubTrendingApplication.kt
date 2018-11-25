@@ -24,10 +24,10 @@ class GithubTrendingApplication : Application(), HasActivityInjector {
         setupTimber()
 
         DaggerApplicationComponent
-                .builder()
-                .application(this)
-                .build()
-                .inject(this)
+            .builder()
+            .application(this)
+            .build()
+            .inject(this)
     }
 
     private fun setupTimber() {
@@ -35,5 +35,4 @@ class GithubTrendingApplication : Application(), HasActivityInjector {
     }
 }
 
-@GlideModule
-class MyAppGlideModule : AppGlideModule()
+@GlideModule class MyAppGlideModule : AppGlideModule()

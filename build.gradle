@@ -1,4 +1,6 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
+import com.android.build.gradle.LibraryExtension
+import com.android.build.gradle.LibraryPlugin
 
 buildscript {
     apply from: 'dependencies.gradle'
@@ -49,10 +51,32 @@ allprojects {
     tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
         kotlinOptions {
             jvmTarget = "1.8"
-            freeCompilerArgs = [
+            freeCompilerArgs += [
                     '-progressive'
             ]
         }
+    }
+
+    tasks.withType(Test) {
+        testLogging {
+            exceptionFormat "full"
+            events "started", "skipped", "passed", "failed"
+            showStandardStreams true
+        }
+    }
+
+    // Disable BuildConfig generation for Android library modules so javac can be skipped altogether.
+    plugins.whenPluginAdded {
+        if (it instanceof LibraryPlugin) {
+            extensions.getByType(LibraryExtension).libraryVariants.all {
+                it.generateBuildConfig.enabled = false
+            }
+        }
+    }
+
+    configurations.all {
+        resolutionStrategy.force "org.mockito:mockito-core:2.22.0"
+        resolutionStrategy.force "androidx.annotation:annotation:$androidXVersion"
     }
 }
 
