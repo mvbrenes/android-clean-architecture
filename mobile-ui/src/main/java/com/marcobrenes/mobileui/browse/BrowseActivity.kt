@@ -36,9 +36,9 @@ class BrowseActivity : AppCompatActivity() {
     private lateinit var progress: ProgressBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_browse)
-        AndroidInjection.inject(this)
 
         viewModel = ViewModelProviders.of(this, viewModelFactory).get()
         recyclerView = findViewById(R.id.recycler_view)
