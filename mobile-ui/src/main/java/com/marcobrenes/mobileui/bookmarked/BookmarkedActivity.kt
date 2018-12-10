@@ -42,9 +42,9 @@ class BookmarkedActivity : AppCompatActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bookmarked)
-        AndroidInjection.inject(this)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get()
