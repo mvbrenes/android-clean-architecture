@@ -1,8 +1,6 @@
 apply plugin: 'kotlin'
 
 dependencies {
-    implementation domainDependencies.coroutines
-    implementation domainDependencies.coroutinesRx
     implementation domainDependencies.kotlin
     implementation domainDependencies.javaxAnnotations
     implementation domainDependencies.javaxInject

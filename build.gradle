@@ -76,7 +76,7 @@ allprojects {
 
     configurations.all {
         resolutionStrategy.force "org.mockito:mockito-core:2.22.0"
-        resolutionStrategy.force "androidx.annotation:annotation:$androidXVersion"
+        resolutionStrategy.force "androidx.annotation:annotation:$axAnnotation"
     }
 }
 

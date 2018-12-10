@@ -7,7 +7,13 @@ ext {
 
   // Libraries
   kotlinVersion = '1.3.11'
-  androidXVersion = '1.0.0'
+
+  axAnnotation = '1.0.1'
+  axAppcompat = '1.1.0-alpha01'
+  axRecyclerView = '1.1.0-alpha01'
+  axCorektx = '1.0.1'
+  materialVersion = '1.1.0-alpha01'
+  
   rxJavaVersion = '2.2.3'
   rxAndroidVersion = '2.1.0'
   rxKotlinVersion = '2.3.0'
@@ -34,7 +40,7 @@ ext {
   mockitoKotlinVersion = '2.0.0'
   byteBuddyVersion = '1.8.22'
   mockitoAndroidVersion = '2.22.0'
-  robolectricVersion = '4.0.2'
+  robolectricVersion = '4.1-beta-2'
   axTestRunner = '1.1.0'
   axTestRules = '1.1.0'
   axTestCore = '1.0.0'
@@ -75,7 +81,7 @@ ext {
       gson              : "com.google.code.gson:gson:$gsonVersion",
       javaxAnnotations  : "javax.annotation:jsr250-api:$javaxAnnotationVersion",
       javaxInject       : "javax.inject:javax.inject:$javaxInjectionVersion",
-      androidAnnotations: "androidx.annotation:annotation:$androidXVersion",
+      androidAnnotations: "androidx.annotation:annotation:$axAnnotation",
       okhttp            : "com.squareup.okhttp3:okhttp:$okhttpVersion",
       okhttpInterceptor : "com.squareup.okhttp3:logging-interceptor:$okhttpVersion",
       retrofit          : "com.squareup.retrofit2:retrofit:$retrofitVersion",
@@ -100,11 +106,11 @@ ext {
       kotlin            : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion",
       javaxAnnotations  : "javax.annotation:jsr250-api:$javaxAnnotationVersion",
       javaxInject       : "javax.inject:javax.inject:$javaxInjectionVersion",
-      androidAnnotations: "androidx.annotation:annotation:$androidXVersion",
+      androidAnnotations: "androidx.annotation:annotation:$axAnnotation",
       roomRuntime       : "androidx.room:room-runtime:$roomVersion",
       roomCompiler      : "androidx.room:room-compiler:$roomVersion",
       roomRxJva         : "androidx.room:room-rxjava2:$roomVersion",
-      appCompat         : "androidx.appcompat:appcompat:$androidXVersion"
+      appCompat         : "androidx.appcompat:appcompat:$axAppcompat"
   ]
 
   cacheTestDependencies = [
@@ -128,7 +134,7 @@ ext {
       rxAndroid          : "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion",
       javaxAnnotations   : "javax.annotation:jsr250-api:$javaxAnnotationVersion",
       javaxInject        : "javax.inject:javax.inject:$javaxInjectionVersion",
-      androidAnnotations : "androidx.annotation:annotation:$androidXVersion",
+      androidAnnotations : "androidx.annotation:annotation:$axAnnotation",
       lifecycleRuntime   : "androidx.lifecycle:lifecycle-runtime:$lifecycleVersion",
       lifecycleExtensions: "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion",
       lifecycleCommon    : "androidx.lifecycle:lifecycle-common-java8:$lifecycleVersion"
@@ -146,7 +152,7 @@ ext {
   mobileUIDependencies = [
       daggerCompiler        : "com.google.dagger:dagger-compiler:$daggerVersion",
       dagger                : "com.google.dagger:dagger:$daggerVersion",
-      ktx                   : "androidx.core:core-ktx:$androidXVersion",
+      ktx                   : "androidx.core:core-ktx:$axCorektx",
       rxKotlin              : "io.reactivex.rxjava2:rxkotlin:$rxKotlinVersion",
       rxJava                : "io.reactivex.rxjava2:rxjava:$rxJavaVersion",
       kotlin                : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion",
@@ -155,10 +161,10 @@ ext {
       glideCompiler         : "com.github.bumptech.glide:compiler:$glideVersion",
       javaxAnnotations      : "javax.annotation:jsr250-api:$javaxAnnotationVersion",
       javaxInject           : "javax.inject:javax.inject:$javaxInjectionVersion",
-      androidAnnotations    : "androidx.annotation:annotation:$androidXVersion",
-      appCompat             : "androidx.appcompat:appcompat:$androidXVersion",
-      recyclerView          : "androidx.recyclerview:recyclerview:$androidXVersion",
-      design                : "com.google.android.material:material:$androidXVersion",
+      androidAnnotations    : "androidx.annotation:annotation:$axAnnotation",
+      appCompat             : "androidx.appcompat:appcompat:$axAppcompat",
+      recyclerView          : "androidx.recyclerview:recyclerview:$axRecyclerView",
+      design                : "com.google.android.material:material:$materialVersion",
       timber                : "com.jakewharton.timber:timber:$timberVersion",
       daggerAndroid         : "com.google.dagger:dagger-android-support:$daggerVersion",
       daggerAndroidProcessor: "com.google.dagger:dagger-android-processor:$daggerVersion",
