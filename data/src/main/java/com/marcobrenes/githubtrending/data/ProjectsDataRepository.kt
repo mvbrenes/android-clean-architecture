@@ -11,30 +11,31 @@ import io.reactivex.functions.BiFunction
 import javax.inject.Inject
 
 class ProjectsDataRepository @Inject constructor(
-        private val mapper: ProjectMapper,
-        private val cache: ProjectsCache,
-        private val factory: ProjectsDataSourceFactory
+    private val mapper: ProjectMapper,
+    private val cache: ProjectsCache,
+    private val factory: ProjectsDataSourceFactory
 ) : ProjectsRepository {
 
     override fun getProjects(): Observable<List<Project>> {
         return Observable.zip(
-                cache.areProjectsCached().toObservable(),
-                cache.isProjectsCacheExpired().toObservable(),
-                BiFunction<Boolean, Boolean, Pair<Boolean, Boolean>> { cached, expired ->
-                    Pair(cached, expired)
-                })
-                .flatMap {
-                    factory.getDataSource(it.first, it.second)
-                            .getProjects()
-                            .toObservable()
-                            .distinctUntilChanged()
-                }
-                .flatMap { projects ->
+            cache.areProjectsCached().toObservable(),
+            cache.isProjectsCacheExpired().toObservable(),
+            BiFunction<Boolean, Boolean, Pair<Boolean, Boolean>> { cached, expired ->
+                Pair(cached, expired)
+            }).flatMap {
+            factory.getDataSource(it.first, it.second)
+                .getProjects()
+                .toObservable()
+                .distinctUntilChanged()
+        }.flatMap { projects ->
+            factory.getCacheDataSource()
+                .saveProjects(projects)
+                .andThen(
                     factory.getCacheDataSource()
-                            .saveProjects(projects)
-                            .andThen(Observable.just(projects))
-                }
-                .map { list -> list.map { mapper.mapFromEntity(it) } }
+                        .getProjects()
+                        .toObservable()
+                )
+        }.map { list -> list.map { mapper.mapFromEntity(it) } }
     }
 
     override fun bookmarkProject(projectId: String): Completable {
@@ -47,6 +48,6 @@ class ProjectsDataRepository @Inject constructor(
 
     override fun getBookmarkedProjects(): Observable<List<Project>> {
         return factory.getCacheDataSource().getBookmarkedProjects()
-                .map { list -> list.map { mapper.mapFromEntity(it) } }
+            .map { list -> list.map { mapper.mapFromEntity(it) } }
     }
 }
