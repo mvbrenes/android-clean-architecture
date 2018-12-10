@@ -37,7 +37,9 @@ dependencies {
     implementation cacheDependencies.dagger
     implementation cacheDependencies.gson
     implementation cacheDependencies.rxKotlin
+    implementation cacheDependencies.rxCoroutines
     implementation cacheDependencies.kotlin
+    implementation cacheDependencies.coroutines
     implementation cacheDependencies.javaxAnnotations
     implementation cacheDependencies.javaxInject
     implementation cacheDependencies.androidAnnotations

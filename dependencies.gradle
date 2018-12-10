@@ -7,13 +7,15 @@ ext {
 
   // Libraries
   kotlinVersion = '1.3.11'
+  coroutines = '1.0.1'
+
 
   axAnnotation = '1.0.1'
   axAppcompat = '1.1.0-alpha01'
   axRecyclerView = '1.1.0-alpha01'
   axCorektx = '1.0.1'
   materialVersion = '1.1.0-alpha01'
-  
+
   rxJavaVersion = '2.2.3'
   rxAndroidVersion = '2.1.0'
   rxKotlinVersion = '2.3.0'
@@ -62,6 +64,8 @@ ext {
 
   dataDependencies = [
       kotlin          : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion",
+      coroutines      : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines",
+      rxCoroutines    : "org.jetbrains.kotlinx:kotlinx-coroutines-rx2:$coroutines",
       rxKotlin        : "io.reactivex.rxjava2:rxkotlin:$rxKotlinVersion",
       javaxAnnotations: "javax.annotation:jsr250-api:$javaxAnnotationVersion",
       javaxInject     : "javax.inject:javax.inject:$javaxInjectionVersion"
@@ -103,6 +107,8 @@ ext {
       dagger            : "com.google.dagger:dagger:$daggerVersion",
       gson              : "com.google.code.gson:gson:$gsonVersion",
       rxKotlin          : "io.reactivex.rxjava2:rxkotlin:$rxKotlinVersion",
+      rxCoroutines      : "org.jetbrains.kotlinx:kotlinx-coroutines-rx2:$coroutines",
+      coroutines        : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines",
       kotlin            : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion",
       javaxAnnotations  : "javax.annotation:jsr250-api:$javaxAnnotationVersion",
       javaxInject       : "javax.inject:javax.inject:$javaxInjectionVersion",
@@ -110,6 +116,7 @@ ext {
       roomRuntime       : "androidx.room:room-runtime:$roomVersion",
       roomCompiler      : "androidx.room:room-compiler:$roomVersion",
       roomRxJva         : "androidx.room:room-rxjava2:$roomVersion",
+      roomCoroutines    : "androidx.room:room-coroutines:$roomVersion",
       appCompat         : "androidx.appcompat:appcompat:$axAppcompat"
   ]
 

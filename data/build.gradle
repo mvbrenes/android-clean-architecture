@@ -5,9 +5,10 @@ dependencies {
 
     implementation dataDependencies.javaxAnnotations
     implementation dataDependencies.kotlin
+    implementation dataDependencies.coroutines
     implementation dataDependencies.javaxInject
     implementation dataDependencies.rxKotlin
-
+    implementation dataDependencies.rxCoroutines
     implementation dataTestDependencies.junit
     implementation dataTestDependencies.kotlinJUnit
     implementation dataTestDependencies.assertJ
