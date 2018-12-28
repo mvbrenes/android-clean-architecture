@@ -6,11 +6,12 @@ buildscript {
     apply from: 'dependencies.gradle'
     repositories {
         google()
+        mavenCentral()
         jcenter()
     }
     dependencies {
         //noinspection GradleDependency
-        classpath 'com.android.tools.build:gradle:3.2.1'
+        classpath 'com.android.tools.build:gradle:3.4.0-alpha09'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
         classpath 'com.android.tools.build.jetifier:jetifier-processor:1.0.0-beta02'
 
@@ -24,13 +25,14 @@ apply from: 'dependencies.gradle'
 allprojects {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
 
         /*glide snapshot repo*/
         maven {
             name 'glide-snapshot'
             url 'http://oss.sonatype.org/content/repositories/snapshots'
         }
+        jcenter()
     }
 
     tasks.withType(JavaCompile).all {

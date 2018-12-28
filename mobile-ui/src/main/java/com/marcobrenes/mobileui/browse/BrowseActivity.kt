@@ -65,20 +65,16 @@ class BrowseActivity : AppCompatActivity() {
     }
 
     private fun setupScreenForSuccess(projects: List<Project>?) {
-        progress.isVisible = false
-        projects?.let {
-            (recyclerView.adapter as? BrowseAdapter)?.apply {
-                this.projects = it
-                notifyDataSetChanged()
-            }
-            recyclerView.isVisible = true
+        if (progress.isVisible) {
+            progress.isVisible = false
         }
+        projects?.let { list -> (recyclerView.adapter as? BrowseAdapter)?.submitList(list) }
     }
 
     private fun setupBrowseRecycler() {
         recyclerView.apply {
             layoutManager = LinearLayoutManager(applicationContext)
-            adapter = BrowseAdapter().apply { this.projectListener = listener }
+            adapter = BrowseAdapter().apply { projectListener = listener }
         }
     }
 
@@ -88,8 +84,9 @@ class BrowseActivity : AppCompatActivity() {
                 setupScreenForSuccess(resource.data?.map { mapper.mapToView(it) })
             }
             ResourceState.LOADING -> {
-                progress.isVisible = true
-                recyclerView.isVisible = false
+                if (recyclerView.adapter?.itemCount ?: 0 == 0 ) {
+                    progress.isVisible = true
+                }
             }
             ResourceState.ERROR -> {
                 resource.message?.let { Timber.e(it) }
