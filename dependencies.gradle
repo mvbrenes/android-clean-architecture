@@ -16,7 +16,7 @@ ext {
   axCorektx = '1.0.1'
   materialVersion = '1.1.0-alpha01'
 
-  rxJavaVersion = '2.2.3'
+  rxJavaVersion = '2.2.4'
   rxAndroidVersion = '2.1.0'
   rxKotlinVersion = '2.3.0'
   javaxAnnotationVersion = '1.0'
@@ -67,6 +67,7 @@ ext {
       coroutines      : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines",
       rxCoroutines    : "org.jetbrains.kotlinx:kotlinx-coroutines-rx2:$coroutines",
       rxKotlin        : "io.reactivex.rxjava2:rxkotlin:$rxKotlinVersion",
+      rxJava          : "io.reactivex.rxjava2:rxjava:$rxJavaVersion",
       javaxAnnotations: "javax.annotation:jsr250-api:$javaxAnnotationVersion",
       javaxInject     : "javax.inject:javax.inject:$javaxInjectionVersion"
   ]
@@ -82,6 +83,7 @@ ext {
   remoteDependencies = [
       kotlin            : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion",
       rxKotlin          : "io.reactivex.rxjava2:rxkotlin:$rxKotlinVersion",
+      rxJava            : "io.reactivex.rxjava2:rxjava:$rxJavaVersion",
       gson              : "com.google.code.gson:gson:$gsonVersion",
       javaxAnnotations  : "javax.annotation:jsr250-api:$javaxAnnotationVersion",
       javaxInject       : "javax.inject:javax.inject:$javaxInjectionVersion",

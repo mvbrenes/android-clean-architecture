@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -14,9 +16,8 @@ import com.marcobrenes.mobileui.ext.inflate
 import com.marcobrenes.mobileui.model.Project
 import javax.inject.Inject
 
-class BrowseAdapter @Inject constructor() : RecyclerView.Adapter<BrowseAdapter.ViewHolder>() {
+class BrowseAdapter @Inject constructor() : ListAdapter<Project, BrowseAdapter.ViewHolder>(DIFF_CALLBACK) {
 
-    var projects: List<Project> = arrayListOf()
     var projectListener: ProjectListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -24,12 +25,8 @@ class BrowseAdapter @Inject constructor() : RecyclerView.Adapter<BrowseAdapter.V
         return ViewHolder(itemView)
     }
 
-    override fun getItemCount(): Int {
-        return projects.size
-    }
-
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val project = projects[position]
+        val project = getItem(position)
         holder.ownerNameText.text = project.ownerName
         holder.projectNameText.text = project.fullName
 
@@ -69,5 +66,15 @@ class BrowseAdapter @Inject constructor() : RecyclerView.Adapter<BrowseAdapter.V
         var ownerNameText: TextView = view.findViewById(R.id.text_owner_name)
         var projectNameText: TextView = view.findViewById(R.id.text_project_name)
         var bookmarkedImage: ImageView = view.findViewById(R.id.image_bookmarked)
+    }
+}
+
+val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Project>() {
+    override fun areItemsTheSame(oldItem: Project, newItem: Project): Boolean {
+        return oldItem.id == newItem.id
+    }
+
+    override fun areContentsTheSame(oldItem: Project, newItem: Project): Boolean {
+        return oldItem == newItem
     }
 }

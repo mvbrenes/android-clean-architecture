@@ -9,6 +9,7 @@ dependencies {
     implementation dataDependencies.javaxInject
     implementation dataDependencies.rxKotlin
     implementation dataDependencies.rxCoroutines
+    implementation dataDependencies.rxJava
     implementation dataTestDependencies.junit
     implementation dataTestDependencies.kotlinJUnit
     implementation dataTestDependencies.assertJ
