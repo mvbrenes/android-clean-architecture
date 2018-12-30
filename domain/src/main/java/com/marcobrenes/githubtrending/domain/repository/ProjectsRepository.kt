@@ -3,10 +3,11 @@ package com.marcobrenes.githubtrending.domain.repository
 import com.marcobrenes.githubtrending.domain.model.Project
 import io.reactivex.Completable
 import io.reactivex.Observable
+import kotlinx.coroutines.channels.ReceiveChannel
 
 interface ProjectsRepository {
-    fun getProjects(): Observable<List<Project>>
-    fun bookmarkProject(projectId: String): Completable
-    fun unbookmarkProject(projectId: String): Completable
-    fun getBookmarkedProjects(): Observable<List<Project>>
+    suspend fun getProjects(): ReceiveChannel<List<Project>>
+    suspend fun bookmarkProject(projectId: String)
+    suspend fun unbookmarkProject(projectId: String)
+    suspend fun getBookmarkedProjects(): ReceiveChannel<List<Project>>
 }

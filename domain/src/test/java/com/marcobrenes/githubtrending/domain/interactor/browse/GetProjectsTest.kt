@@ -10,7 +10,6 @@ import com.nhaarman.mockitokotlin2.whenever
 import io.reactivex.Observable
 import org.junit.Before
 import org.junit.Test
-import org.mockito.MockitoAnnotations
 
 class GetProjectsTest {
 
@@ -20,7 +19,6 @@ class GetProjectsTest {
 
     @Before
     fun setup() {
-        MockitoAnnotations.initMocks(this)
         getProjects = GetProjects(projectsRepository, postExecutionThread)
     }
 

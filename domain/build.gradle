@@ -5,6 +5,7 @@ dependencies {
     implementation domainDependencies.javaxAnnotations
     implementation domainDependencies.javaxInject
     implementation domainDependencies.rxJava
+    implementation domainDependencies.coroutines
 
     testImplementation domainTestDependencies.junit
     testImplementation domainTestDependencies.mockitoKotlin

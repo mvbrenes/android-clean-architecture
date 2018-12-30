@@ -51,6 +51,10 @@ dependencies {
   implementation project(':remote')
   implementation project(':cache')
   implementation project(':domain')
+
+  implementation mobileUIDependencies.coroutines
+  implementation mobileUIDependencies.coroutinesAndroid
+
   implementation mobileUIDependencies.ktx
   implementation mobileUIDependencies.dagger
   implementation mobileUIDependencies.rxJava

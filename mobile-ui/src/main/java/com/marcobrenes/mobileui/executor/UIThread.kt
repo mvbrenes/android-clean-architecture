@@ -1,4 +1,4 @@
-package com.marcobrenes.mobileui
+package com.marcobrenes.mobileui.executor
 
 import com.marcobrenes.githubtrending.domain.executor.PostExecutionThread
 import io.reactivex.Scheduler
