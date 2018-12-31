@@ -7,7 +7,6 @@ abstract class CoroutineChannelUseCase<T, in Params>(
     private val subscribeDispatcher: CoroutineDispatcher,
     private val observeDispatcher: CoroutineDispatcher
 ) {
-
     private val parentJob = Job()
     private val scope = CoroutineScope(observeDispatcher + parentJob)
 

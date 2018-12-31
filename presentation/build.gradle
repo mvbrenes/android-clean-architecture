@@ -34,18 +34,18 @@ dependencies {
     implementation project(':domain')
 
     implementation presentationDependencies.dagger
-    implementation presentationDependencies.rxKotlin
+    kapt presentationDependencies.daggerCompiler
+
     implementation presentationDependencies.kotlin
     implementation presentationDependencies.coroutines
     implementation presentationDependencies.coroutinesAndroid
-    implementation presentationDependencies.rxAndroid
     implementation presentationDependencies.javaxAnnotations
     implementation presentationDependencies.javaxInject
     implementation presentationDependencies.androidAnnotations
     implementation presentationDependencies.lifecycleRuntime
     implementation presentationDependencies.lifecycleExtensions
     implementation presentationDependencies.lifecycleCommon
-    kapt presentationDependencies.daggerCompiler
+
     testImplementation presentationTestDependencies.junit
     testImplementation presentationTestDependencies.assertJ
     testImplementation presentationTestDependencies.kotlinJUnit

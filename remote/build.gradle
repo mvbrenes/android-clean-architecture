@@ -4,8 +4,6 @@ dependencies {
     implementation project(':data')
 
     implementation remoteDependencies.kotlin
-    implementation remoteDependencies.rxKotlin
-    implementation remoteDependencies.rxJava
     implementation remoteDependencies.coroutines
     implementation remoteDependencies.gson
     implementation remoteDependencies.javaxAnnotations
@@ -15,7 +13,6 @@ dependencies {
     implementation remoteDependencies.okhttpInterceptor
     implementation remoteDependencies.retrofit
     implementation remoteDependencies.retrofitConverter
-    implementation remoteDependencies.retrofitAdapter
     implementation remoteDependencies.retrofitCoroutines
 
     testImplementation remoteTestDependencies.junit

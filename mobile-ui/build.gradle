@@ -57,10 +57,7 @@ dependencies {
 
   implementation mobileUIDependencies.ktx
   implementation mobileUIDependencies.dagger
-  implementation mobileUIDependencies.rxJava
-  implementation mobileUIDependencies.rxKotlin
   implementation mobileUIDependencies.kotlin
-  implementation mobileUIDependencies.rxAndroid
   implementation mobileUIDependencies.glide
   implementation mobileUIDependencies.javaxAnnotations
   implementation mobileUIDependencies.javaxInject
@@ -73,7 +70,6 @@ dependencies {
     exclude group: 'com.android.support'
   }
   implementation mobileUIDependencies.roomRuntime
-  implementation mobileUIDependencies.roomRxJva
   implementation mobileUIDependencies.constraintLayout
   implementation mobileUIDependencies.lifecycleRuntime
   implementation mobileUIDependencies.lifecycleExtensions
@@ -106,7 +102,6 @@ dependencies {
   androidTestImplementation mobileUITestDependencies.testRules
   androidTestImplementation mobileUITestDependencies.testCore
   androidTestImplementation mobileUITestDependencies.testExtJunit
-  androidTestImplementation mobileUITestDependencies.rxIdler
   androidTestImplementation mobileUITestDependencies.mockitoAndroid
   androidTestImplementation mobileUITestDependencies.dagger
   androidTestImplementation(mobileUITestDependencies.daggerAndroid) {

@@ -53,7 +53,6 @@ ext {
       kotlin          : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion",
       javaxAnnotations: "javax.annotation:jsr250-api:$javaxAnnotationVersion",
       javaxInject     : "javax.inject:javax.inject:$javaxInjectionVersion",
-      rxJava          : "io.reactivex.rxjava2:rxjava:$rxJavaVersion",
       coroutines      : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines",
   ]
 
@@ -67,8 +66,6 @@ ext {
       kotlin          : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion",
       coroutines      : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines",
       rxCoroutines    : "org.jetbrains.kotlinx:kotlinx-coroutines-rx2:$coroutines",
-      rxKotlin        : "io.reactivex.rxjava2:rxkotlin:$rxKotlinVersion",
-      rxJava          : "io.reactivex.rxjava2:rxjava:$rxJavaVersion",
       javaxAnnotations: "javax.annotation:jsr250-api:$javaxAnnotationVersion",
       javaxInject     : "javax.inject:javax.inject:$javaxInjectionVersion"
   ]
@@ -83,9 +80,7 @@ ext {
 
   remoteDependencies = [
       kotlin            : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion",
-      rxKotlin          : "io.reactivex.rxjava2:rxkotlin:$rxKotlinVersion",
-      coroutines      : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines",
-      rxJava            : "io.reactivex.rxjava2:rxjava:$rxJavaVersion",
+      coroutines        : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines",
       gson              : "com.google.code.gson:gson:$gsonVersion",
       javaxAnnotations  : "javax.annotation:jsr250-api:$javaxAnnotationVersion",
       javaxInject       : "javax.inject:javax.inject:$javaxInjectionVersion",
@@ -94,7 +89,6 @@ ext {
       okhttpInterceptor : "com.squareup.okhttp3:logging-interceptor:$okhttpVersion",
       retrofit          : "com.squareup.retrofit2:retrofit:$retrofitVersion",
       retrofitConverter : "com.squareup.retrofit2:converter-gson:$retrofitVersion",
-      retrofitAdapter   : "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion",
       retrofitCoroutines: "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:$retrofitCoroutinesVersion"
   ]
 
@@ -141,11 +135,9 @@ ext {
   presentationDependencies = [
       daggerCompiler     : "com.google.dagger:dagger-compiler:$daggerVersion",
       dagger             : "com.google.dagger:dagger:$daggerVersion",
-      rxKotlin           : "io.reactivex.rxjava2:rxkotlin:$rxKotlinVersion",
       kotlin             : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion",
-      rxAndroid          : "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion",
-      coroutines            : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines",
-      coroutinesAndroid     : "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines",
+      coroutines         : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines",
+      coroutinesAndroid  : "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines",
       javaxAnnotations   : "javax.annotation:jsr250-api:$javaxAnnotationVersion",
       javaxInject        : "javax.inject:javax.inject:$javaxInjectionVersion",
       androidAnnotations : "androidx.annotation:annotation:$axAnnotation",
@@ -155,24 +147,23 @@ ext {
   ]
 
   presentationTestDependencies = [
-      junit        : "junit:junit:$jUnitVersion",
-      assertJ      : "org.assertj:assertj-core:$assertJVersion",
-      kotlinJUnit  : "org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion",
-      mockitoKotlin: "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockitoKotlinVersion",
-      robolectric  : "org.robolectric:robolectric:$robolectricVersion",
-      archTesting  : "androidx.arch.core:core-testing:$lifecycleVersion"
+      junit            : "junit:junit:$jUnitVersion",
+      assertJ          : "org.assertj:assertj-core:$assertJVersion",
+      kotlinJUnit      : "org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion",
+      mockitoKotlin    : "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockitoKotlinVersion",
+      robolectric      : "org.robolectric:robolectric:$robolectricVersion",
+      archTesting      : "androidx.arch.core:core-testing:$lifecycleVersion",
+      coroutines       : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines",
+      coroutinesAndroid: "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines",
   ]
 
   mobileUIDependencies = [
       daggerCompiler        : "com.google.dagger:dagger-compiler:$daggerVersion",
       dagger                : "com.google.dagger:dagger:$daggerVersion",
       ktx                   : "androidx.core:core-ktx:$axCorektx",
-      rxKotlin              : "io.reactivex.rxjava2:rxkotlin:$rxKotlinVersion",
-      rxJava                : "io.reactivex.rxjava2:rxjava:$rxJavaVersion",
       coroutines            : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines",
       coroutinesAndroid     : "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines",
       kotlin                : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion",
-      rxAndroid             : "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion",
       glide                 : "com.github.bumptech.glide:glide:$glideVersion",
       glideCompiler         : "com.github.bumptech.glide:compiler:$glideVersion",
       javaxAnnotations      : "javax.annotation:jsr250-api:$javaxAnnotationVersion",
@@ -190,7 +181,6 @@ ext {
       lifecycleCommon       : "androidx.lifecycle:lifecycle-common-java8:$lifecycleVersion",
       roomRuntime           : "androidx.room:room-runtime:$roomVersion",
       roomCompiler          : "androidx.room:room-compiler:$roomVersion",
-      roomRxJva             : "androidx.room:room-rxjava2:$roomVersion",
       constraintLayout      : "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
   ]
 
