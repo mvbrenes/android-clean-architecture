@@ -11,7 +11,6 @@ import com.marcobrenes.githubtrending.cache.db.ProjectConstants.QUERY_PROJECTS
 import com.marcobrenes.githubtrending.cache.db.ProjectConstants.QUERY_UPDATE_BOOKMARK_STATUS
 import com.marcobrenes.githubtrending.cache.model.CachedProject
 import io.reactivex.Flowable
-import io.reactivex.Single
 
 @Dao
 abstract class CachedProjectsDao {
@@ -21,11 +20,11 @@ abstract class CachedProjectsDao {
     abstract fun getProjects(): Flowable<List<CachedProject>>
 
     @Query(QUERY_EXISTS)
-    abstract fun cachedProjectsExist(): Single<Int>
+    abstract suspend fun cachedProjectsExist(): Int
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     @JvmSuppressWildcards
-    abstract fun insertProjects(projects: List<CachedProject>)
+    abstract suspend fun insertProjects(projects: List<CachedProject>)
 
     @Query(DELETE_PROJECTS)
     abstract fun deleteProjects()

@@ -3,8 +3,6 @@ package com.marcobrenes.githubtrending.data
 import com.marcobrenes.githubtrending.data.mapper.ProjectMapper
 import com.marcobrenes.githubtrending.data.model.ProjectEntity
 import com.marcobrenes.githubtrending.data.repository.ProjectsCache
-import com.marcobrenes.githubtrending.data.repository.ProjectsDataSource
-import com.marcobrenes.githubtrending.data.source.ProjectsDataSourceFactory
 import com.marcobrenes.githubtrending.data.test.factory.DataFactory
 import com.marcobrenes.githubtrending.data.test.factory.ProjectFactory
 import com.marcobrenes.githubtrending.domain.model.Project

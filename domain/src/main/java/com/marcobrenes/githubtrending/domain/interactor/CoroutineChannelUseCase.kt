@@ -8,7 +8,7 @@ abstract class CoroutineChannelUseCase<T, in Params>(
     private val observeDispatcher: CoroutineDispatcher
 ) {
 
-    private var parentJob = Job()
+    private val parentJob = Job()
     private val scope = CoroutineScope(observeDispatcher + parentJob)
 
     abstract suspend fun getChannel(params: Params? = null): ReceiveChannel<T>

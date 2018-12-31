@@ -38,6 +38,8 @@ dependencies {
     implementation cacheDependencies.gson
     implementation cacheDependencies.rxKotlin
     implementation cacheDependencies.rxCoroutines
+    implementation cacheDependencies.roomCoroutines
+
     implementation cacheDependencies.kotlin
     implementation cacheDependencies.coroutines
     implementation cacheDependencies.javaxAnnotations

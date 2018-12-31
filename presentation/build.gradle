@@ -32,9 +32,12 @@ android {
 
 dependencies {
     implementation project(':domain')
+
     implementation presentationDependencies.dagger
     implementation presentationDependencies.rxKotlin
     implementation presentationDependencies.kotlin
+    implementation presentationDependencies.coroutines
+    implementation presentationDependencies.coroutinesAndroid
     implementation presentationDependencies.rxAndroid
     implementation presentationDependencies.javaxAnnotations
     implementation presentationDependencies.javaxInject
