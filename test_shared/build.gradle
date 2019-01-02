@@ -1,0 +1,8 @@
+apply plugin: 'kotlin'
+
+dependencies {
+    implementation project(':domain')
+
+    implementation domainDependencies.kotlin
+    implementation domainDependencies.coroutines
+}

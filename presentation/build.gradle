@@ -32,6 +32,7 @@ android {
 
 dependencies {
     implementation project(':domain')
+    implementation project(':test_shared')
 
     implementation presentationDependencies.dagger
     kapt presentationDependencies.daggerCompiler

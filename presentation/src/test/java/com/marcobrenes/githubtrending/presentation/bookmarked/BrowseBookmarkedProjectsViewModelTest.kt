@@ -1,3 +1,4 @@
+/*
 package com.marcobrenes.githubtrending.presentation.bookmarked
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
@@ -72,3 +73,4 @@ class BrowseBookmarkedProjectsViewModelTest {
         whenever(mapper.mapToView(project)) doReturn projectView
     }
 }
+*/
