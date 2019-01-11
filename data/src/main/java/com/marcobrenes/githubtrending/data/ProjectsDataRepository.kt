@@ -6,8 +6,10 @@ import com.marcobrenes.githubtrending.data.source.ProjectsCacheDataSource
 import com.marcobrenes.githubtrending.data.source.ProjectsRemoteDataSource
 import com.marcobrenes.githubtrending.domain.model.Project
 import com.marcobrenes.githubtrending.domain.repository.ProjectsRepository
+import kotlinx.coroutines.async
 import kotlinx.coroutines.channels.ReceiveChannel
 import kotlinx.coroutines.channels.map
+import kotlinx.coroutines.coroutineScope
 import javax.inject.Inject
 
 class ProjectsDataRepository @Inject constructor(
@@ -17,14 +19,14 @@ class ProjectsDataRepository @Inject constructor(
     private val remoteDataSource: ProjectsRemoteDataSource
 ) : ProjectsRepository {
 
-    override suspend fun getProjects(): ReceiveChannel<List<Project>> {
-        val areProjectsCached = cache.areProjectsCached()
-        val isCacheExpired = cache.isProjectsCacheExpired()
-        if (!areProjectsCached || isCacheExpired) {
+    override suspend fun getProjects(): ReceiveChannel<List<Project>> = coroutineScope {
+        val areProjectsCached = async { cache.areProjectsCached() }
+        val isCacheExpired = async { cache.isProjectsCacheExpired() }
+        if (!areProjectsCached.await() || isCacheExpired.await()) {
             val projects = remoteDataSource.getProjects()
             cacheDataSource.saveProjects(projects)
         }
-        return cacheDataSource.getProjects().map { entities ->
+        cacheDataSource.getProjects().map { entities ->
             entities.map { mapper.mapFromEntity(it) }
         }
     }
