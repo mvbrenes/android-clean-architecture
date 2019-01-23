@@ -190,6 +190,7 @@ ext {
       daggerCompiler        : "com.google.dagger:dagger-compiler:$daggerVersion",
       daggerAndroid         : "com.google.dagger:dagger-android-support:$daggerVersion",
       daggerAndroidProcessor: "com.google.dagger:dagger-android-processor:$daggerVersion",
+      coroutinesTest        : "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines",
       junit                 : "junit:junit:$jUnitVersion",
       assertJ               : "org.assertj:assertj-core:$assertJVersion",
       kotlinJUnit           : "org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion",

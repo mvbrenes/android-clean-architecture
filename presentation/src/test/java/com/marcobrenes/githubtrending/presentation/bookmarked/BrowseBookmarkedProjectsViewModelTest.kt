@@ -1,7 +1,7 @@
-/*
 package com.marcobrenes.githubtrending.presentation.bookmarked
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import com.marcobrenes.githubtrending.domain.interactor.CoroutineCallback
 import com.marcobrenes.githubtrending.domain.interactor.bookmark.GetBookmarkedProjects
 import com.marcobrenes.githubtrending.domain.model.Project
 import com.marcobrenes.githubtrending.presentation.BrowseBookmarkedProjectsViewModel
@@ -11,7 +11,6 @@ import com.marcobrenes.githubtrending.presentation.state.ResourceState
 import com.marcobrenes.githubtrending.presentation.test.factory.DataFactory
 import com.marcobrenes.githubtrending.presentation.test.factory.ProjectFactory
 import com.nhaarman.mockitokotlin2.*
-import io.reactivex.observers.DisposableObserver
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -25,11 +24,11 @@ class BrowseBookmarkedProjectsViewModelTest {
     private val getBookmarkedProjects: GetBookmarkedProjects = mock()
     private val mapper: ProjectViewMapper = mock()
     private val projectViewModel = BrowseBookmarkedProjectsViewModel(getBookmarkedProjects, mapper)
-    private val captor = argumentCaptor<DisposableObserver<List<Project>>>()
+    private val captor = argumentCaptor<CoroutineCallback<List<Project>>>()
 
     @Test fun fetchProjectsExecutesUseCase() {
         projectViewModel.fetchProjects()
-        verify(getBookmarkedProjects, times(1)).execute(any(), eq(null))
+        verify(getBookmarkedProjects, times(1)).invoke(eq(null), any())
     }
 
     @Test fun fetProjectsReturnsSuccess() {
@@ -38,8 +37,8 @@ class BrowseBookmarkedProjectsViewModelTest {
         stubProjectMapperMapToView(projects[0], projectViews[0])
         stubProjectMapperMapToView(projects[1], projectViews[1])
         projectViewModel.fetchProjects()
-        verify(getBookmarkedProjects).execute(captor.capture(), eq(null))
-        captor.firstValue.onNext(projects)
+        verify(getBookmarkedProjects).invoke(eq(null), captor.capture())
+        captor.firstValue.sourceLoaded(projects)
         assertEquals(ResourceState.SUCCESS, projectViewModel.getProjects().value?.status)
     }
 
@@ -49,23 +48,23 @@ class BrowseBookmarkedProjectsViewModelTest {
         stubProjectMapperMapToView(projects[0], projectViews[0])
         stubProjectMapperMapToView(projects[1], projectViews[1])
         projectViewModel.fetchProjects()
-        verify(getBookmarkedProjects).execute(captor.capture(), eq(null))
-        captor.firstValue.onNext(projects)
+        verify(getBookmarkedProjects).invoke(eq(null), captor.capture())
+        captor.firstValue.sourceLoaded(projects)
         assertEquals(projectViews, projectViewModel.getProjects().value?.data)
     }
 
     @Test fun fetProjectsReturnsError() {
         projectViewModel.fetchProjects()
-        verify(getBookmarkedProjects).execute(captor.capture(), eq(null))
-        captor.firstValue.onError(RuntimeException())
+        verify(getBookmarkedProjects).invoke(eq(null), captor.capture())
+        captor.firstValue.loadFailed(RuntimeException())
         assertEquals(ResourceState.ERROR, projectViewModel.getProjects().value?.status)
     }
 
     @Test fun fetProjectsReturnsMessageForError() {
         val errorMessage = DataFactory.randomString()
         projectViewModel.fetchProjects()
-        verify(getBookmarkedProjects).execute(captor.capture(), eq(null))
-        captor.firstValue.onError(RuntimeException(errorMessage))
+        verify(getBookmarkedProjects).invoke(eq(null), captor.capture())
+        captor.firstValue.loadFailed(RuntimeException(errorMessage))
         assertEquals(errorMessage, projectViewModel.getProjects().value?.message)
     }
 
@@ -73,4 +72,3 @@ class BrowseBookmarkedProjectsViewModelTest {
         whenever(mapper.mapToView(project)) doReturn projectView
     }
 }
-*/

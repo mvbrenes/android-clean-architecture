@@ -79,6 +79,7 @@ dependencies {
   kapt mobileUIDependencies.daggerAndroidProcessor
   kapt mobileUIDependencies.roomCompiler
 
+  testImplementation mobileUITestDependencies.coroutinesTest
   testImplementation mobileUITestDependencies.kotlinJUnit
   testImplementation mobileUITestDependencies.testCore
   testImplementation mobileUITestDependencies.testRunner
@@ -92,6 +93,11 @@ dependencies {
   testImplementation(mobileUITestDependencies.daggerAndroid) {
     exclude group: 'com.android.support'
   }
+
+  testImplementation mobileUITestDependencies.espressoCore
+  testImplementation mobileUITestDependencies.espressoIntents
+  testImplementation mobileUITestDependencies.espressoContrib
+
   kaptTest mobileUITestDependencies.daggerCompiler
   kaptTest mobileUITestDependencies.daggerAndroidProcessor
 
@@ -102,7 +108,10 @@ dependencies {
   androidTestImplementation mobileUITestDependencies.testRules
   androidTestImplementation mobileUITestDependencies.testCore
   androidTestImplementation mobileUITestDependencies.testExtJunit
-  androidTestImplementation mobileUITestDependencies.mockitoAndroid
+  androidTestImplementation(mobileUITestDependencies.mockitoAndroid) {
+    exclude group: 'org.jetbrains.kotlin'
+    exclude group: 'org.mockito'
+  }
   androidTestImplementation mobileUITestDependencies.dagger
   androidTestImplementation(mobileUITestDependencies.daggerAndroid) {
     exclude group: 'com.android.support'
@@ -110,6 +119,7 @@ dependencies {
   androidTestImplementation mobileUITestDependencies.espressoCore
   androidTestImplementation mobileUITestDependencies.espressoIntents
   androidTestImplementation mobileUITestDependencies.espressoContrib
+
   kaptAndroidTest mobileUITestDependencies.daggerCompiler
   kaptAndroidTest mobileUITestDependencies.daggerAndroidProcessor
 }

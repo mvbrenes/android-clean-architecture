@@ -9,41 +9,62 @@ import com.marcobrenes.githubtrending.domain.model.Project
 import com.marcobrenes.mobileui.R
 import com.marcobrenes.mobileui.TestApplication
 import com.marcobrenes.mobileui.ext.ActivityTestRule
+import com.marcobrenes.mobileui.test.RecyclerViewMatcher
 import com.marcobrenes.mobileui.test.factory.ProjectFactory
 import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.whenever
-import io.reactivex.Observable
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.channels.produce
+import kotlinx.coroutines.runBlocking
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.robolectric.annotation.Config
+import kotlin.coroutines.CoroutineContext
 
+@ExperimentalCoroutinesApi
 @RunWith(AndroidJUnit4::class)
+@Config(application = TestApplication::class, sdk = [28])
 class BookmarkedActivityUITest {
-
     @get:Rule val activity = ActivityTestRule<BookmarkedActivity>(launchActivity = false)
 
-    @Test fun activityLaunches() {
-        stubProjectsRepositoryGetBookmarkedProjects(Observable.just(
-                ProjectFactory.makeProjectList(1)))
+    @Test
+    fun activityLaunches() = runBlocking<Unit> {
+        stubProjectsRepositoryGetBookmarkedProjects(ProjectFactory.makeProjectList(1))
         activity.launchActivity(null)
+        onView(withId(R.id.recycler_view))
+            .check(matches(isDisplayed()))
     }
 
-    @Test fun bookmarkedProjectsDisplay() {
+    @Test
+    fun bookmarkedProjectsDisplay() = runBlocking {
+
         val projects = ProjectFactory.makeProjectList(10)
-        stubProjectsRepositoryGetBookmarkedProjects(Observable.just(projects))
+        stubProjectsRepositoryGetBookmarkedProjects(projects)
+
         activity.launchActivity(null)
+
         projects.forEachIndexed { index, project ->
+
             onView(withId(R.id.recycler_view))
-                    .perform(RecyclerViewActions
-                            .scrollToPosition<BookmarkedAdapter.ViewHolder>(index))
-            onView(withId(R.id.recycler_view))
-                    .check(matches(hasDescendant(withText(project.fullName))))
+                .perform(
+                    RecyclerViewActions
+                        .scrollToPosition<BookmarkedAdapter.ViewHolder>(index)
+                )
+
+            RecyclerViewMatcher(R.id.recycler_view)
+                .atPositionOnView(index, R.id.text_project_name)
+                .matches(withText(project.fullName))
         }
     }
 
-    private fun stubProjectsRepositoryGetBookmarkedProjects(observable: Observable<List<Project>>) {
+    private suspend fun stubProjectsRepositoryGetBookmarkedProjects(projects: List<Project>) {
         val repoMock = TestApplication.appComponent().projectsRepository()
-        whenever(repoMock.getBookmarkedProjects()) doReturn observable
+        whenever(repoMock.getBookmarkedProjects()) doReturn projects.asReceiveChannel()
     }
 
+    private fun <T> T.asReceiveChannel(context: CoroutineContext = Dispatchers.Unconfined) =
+        GlobalScope.produce(context) { send(this@asReceiveChannel) }
 }
