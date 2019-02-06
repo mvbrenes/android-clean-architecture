@@ -97,11 +97,22 @@ dependencies {
 
   androidTestImplementation mobileUITestDependencies.junit
   androidTestImplementation mobileUITestDependencies.assertJ
+
   androidTestImplementation mobileUITestDependencies.mockitoKotlin
   androidTestImplementation mobileUITestDependencies.testRunner
+
   androidTestImplementation mobileUITestDependencies.testRules
   androidTestImplementation mobileUITestDependencies.testCore
   androidTestImplementation mobileUITestDependencies.testExtJunit
+  androidTestImplementation (mobileUITestDependencies.mockitoAndroid) {
+    exclude group: 'net.bytebuddy', module: 'byte-buddy'
+    exclude group: 'net.bytebuddy', module: 'byte-buddy-android'
+    exclude group: 'net.bytebuddy', module: 'byte-buddy-agent'
+  }
+// Explicitly include byte-buddy 1.8.22 to fix a build error with Mockito 2.23
+  androidTestImplementation 'net.bytebuddy:byte-buddy:1.8.21'
+  androidTestImplementation 'net.bytebuddy:byte-buddy-android:1.8.21'
+  androidTestImplementation 'net.bytebuddy:byte-buddy-agent:1.8.21'
   androidTestImplementation mobileUITestDependencies.rxIdler
   androidTestImplementation mobileUITestDependencies.mockitoAndroid
   androidTestImplementation mobileUITestDependencies.dagger

@@ -122,7 +122,7 @@ ext {
       kotlinJUnit  : "org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion",
       mockitoKotlin: "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockitoKotlinVersion",
       roomTesting  : "androidx.room:room-testing:$roomVersion",
-      archTesting  : "androidx.arch.core:core-testing:$lifecycleVersion",
+      archTesting  : "androidx.arch.core:core-testing:$archCoreTestingVersion",
       testRunner   : "androidx.test:runner:$axTestRunner",
       testRules    : "androidx.test:rules:$axTestRules",
       testCore     : "androidx.test:core:$axTestCore",
@@ -149,7 +149,7 @@ ext {
       kotlinJUnit  : "org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion",
       mockitoKotlin: "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockitoKotlinVersion",
       robolectric  : "org.robolectric:robolectric:$robolectricVersion",
-      archTesting  : "androidx.arch.core:core-testing:$lifecycleVersion"
+      archTesting  : "androidx.arch.core:core-testing:$archCoreTestingVersion"
   ]
 
   mobileUIDependencies = [
