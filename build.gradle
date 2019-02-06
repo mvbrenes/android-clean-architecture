@@ -12,7 +12,7 @@ buildscript {
 
     dependencies {
         //noinspection GradleDependency
-        classpath 'com.android.tools.build:gradle:3.5.0-alpha01'
+        classpath 'com.android.tools.build:gradle:3.5.0-alpha03'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
         classpath 'com.android.tools.build.jetifier:jetifier-processor:1.0.0-beta02'
 

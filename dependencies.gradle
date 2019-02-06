@@ -6,7 +6,7 @@ ext {
   buildToolsVersion = '28.0.3'
 
   // Libraries
-  kotlinVersion = '1.3.11'
+  kotlinVersion = '1.3.20'
   coroutines = '1.1.0'
 
   axAnnotation = '1.0.1'
